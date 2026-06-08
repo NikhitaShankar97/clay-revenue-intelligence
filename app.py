@@ -83,53 +83,62 @@ def business_table(df: pd.DataFrame, money_cols=None, bool_cols=None):
 
     return out
 
-def html_bar_chart(df, label_col, value_col, title, subtitle="", color="#E8632A", value_format="number", max_rows=12):
-    if df is None or df.empty:
-        st.info("No data available for the selected filters.")
-        return
-
-    chart_df = df[[label_col, value_col]].dropna().copy()
-    chart_df = chart_df.sort_values(value_col, ascending=False).head(max_rows)
-    max_value = chart_df[value_col].max()
-
-    if max_value == 0 or pd.isna(max_value):
-        max_value = 1
-
-    rows = ""
-    for _, row in chart_df.iterrows():
-        label = str(row[label_col])
-        value = float(row[value_col])
-        width = max(4, min(100, (value / max_value) * 100))
-
-        if value_format == "money":
-            display_value = money(value)
-        elif value_format == "decimal":
-            display_value = f"{value:,.2f}"
-        elif value_format == "percent":
-            display_value = f"{value:,.1f}%"
-        else:
-            display_value = f"{value:,.0f}"
-
-        rows += f"""
-        <div class="bar-row">
-            <div class="bar-label">{label}</div>
-            <div class="bar-track">
-                <div class="bar-fill" style="width:{width:.1f}%; background:{color};"></div>
-            </div>
-            <div class="bar-value">{display_value}</div>
-        </div>
-        """
-
+def html_bar_chart(df, label_col, value_col, title, subtitle, color="#E8632A", decimal_places=0):
+    """Render a safe HTML bar chart that will not fail on null, zero, Decimal, or empty values."""
     st.markdown(
         f"""
         <div class="card">
-            <div class="card-title">{title}</div>
-            <div class="card-sub">{subtitle}</div>
-            <div class="bar-chart">{rows}</div>
-        </div>
+          <div class="card-title">{title}</div>
+          <div class="card-sub">{subtitle}</div>
         """,
         unsafe_allow_html=True
     )
+
+    if df is None or df.empty or value_col not in df.columns or label_col not in df.columns:
+        st.markdown(
+            "<div class='card-sub'>No data available for the selected filters.</div></div>",
+            unsafe_allow_html=True
+        )
+        return
+
+    chart_df = df[[label_col, value_col]].copy()
+    chart_df[value_col] = pd.to_numeric(chart_df[value_col], errors="coerce").fillna(0)
+
+    max_value = chart_df[value_col].max()
+
+    if pd.isna(max_value) or max_value <= 0:
+        st.markdown(
+            "<div class='card-sub'>No positive values available for this chart.</div></div>",
+            unsafe_allow_html=True
+        )
+        return
+
+    for _, row in chart_df.iterrows():
+        label = str(row[label_col])
+        value = float(row[value_col]) if pd.notna(row[value_col]) else 0.0
+
+        width = max(4, min(100, (value / max_value) * 100))
+
+        if decimal_places == 0:
+            display_value = f"{value:,.0f}"
+        else:
+            display_value = f"{value:,.{decimal_places}f}"
+
+        st.markdown(
+            f"""
+            <div style="display:flex; align-items:center; gap:12px; margin:12px 0;">
+              <div style="width:180px; font-size:13px;">{label}</div>
+              <div style="flex:1; background:#EEEAE4; border-radius:999px; height:10px;">
+                <div style="width:{width}%; background:{color}; height:10px; border-radius:999px;"></div>
+              </div>
+              <div style="width:90px; text-align:right; font-size:13px;">{display_value}</div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+    st.markdown("</div>", unsafe_allow_html=True)
+
 
 def signal_card(title, hypothesis, action, severity="P1", color="#E8632A"):
     st.markdown(
@@ -264,6 +273,31 @@ html, body, [class*="css"] { font-family: 'Geist', sans-serif; }
     margin-bottom: 4px;
 }
 
+
+/* Public Streamlit Cloud header spacing fix */
+.block-container {
+    padding-top: 5.25rem !important;
+}
+
+/* Keep Clay header visible below the Streamlit Cloud toolbar */
+.clay-top-header, .app-header, .hero, .top-card {
+    margin-top: 0.75rem !important;
+}
+
+/* Make selected multiselect/filter pills blue instead of red */
+.stMultiSelect [data-baseweb="tag"] {
+    background-color: #1F6FEB !important;
+    border-color: #1F6FEB !important;
+    color: white !important;
+}
+.stMultiSelect [data-baseweb="tag"] span {
+    color: white !important;
+}
+.stMultiSelect [data-baseweb="tag"] svg {
+    color: white !important;
+    fill: white !important;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -281,7 +315,7 @@ st.markdown("""
 
 st.markdown('<div class="small-note">Dynamic analytics app using public Clay product concepts and synthetic data. All KPIs, diagnostics, risk scores, and recommendations recalculate from dbt-built Snowflake models and respond to filters.</div>', unsafe_allow_html=True)
 
-st.markdown('<div class="filter-card"><div class="card-title">Segment Filters</div><div class="card-sub">Use these filters to analyze GTM health by plan, industry, and risk band.</div></div>', unsafe_allow_html=True)
+st.markdown('<div class="filter-card"><div class="card-title">Segment Filters</div><div class="card-sub">Use these filters to analyze GTM health by plan, industry, and risk band. Risk band summarizes churn-risk signals from usage, pipeline efficiency, support friction, and product adoption.</div></div>', unsafe_allow_html=True)
 
 f1, f2, f3 = st.columns(3)
 with f1:
@@ -293,6 +327,7 @@ with f2:
 with f3:
     risk_options = sorted(base["RISK_BAND"].dropna().astype(str).unique())
     selected_risk = st.multiselect("Risk Band", risk_options, default=risk_options)
+    st.caption("Risk Band meaning: HIGH = needs Customer Success attention, MEDIUM = monitor for early warning signs, LOW = healthier account behavior based on usage, pipeline efficiency, support friction, and product adoption.")
 
 filtered = base[
     (base["PLAN_TIER"].isin(selected_plans))
