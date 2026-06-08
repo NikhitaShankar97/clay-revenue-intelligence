@@ -324,7 +324,7 @@ html, body, [class*="css"] { font-family: 'Geist', sans-serif; }
 
 /* Public Streamlit Cloud header spacing fix */
 .block-container {
-    padding-top: 1.25rem !important;
+    padding-top: 3.25rem !important;
 }
 
 /* Keep Clay header visible below the Streamlit Cloud toolbar */
@@ -425,7 +425,7 @@ span[data-baseweb="tag"] * {
     gap: 0.35rem;
     font-size: 0.98rem;
     color: #31333F;
-    margin-bottom: -0.35rem;
+    margin-bottom: 0.35rem;
     line-height: 1.2;
 }
 .help-dot {
@@ -444,6 +444,12 @@ span[data-baseweb="tag"] * {
 .help-dot:hover {
     border-color: #E8632A;
     color: #E8632A;
+}
+
+
+/* Extra spacing under the Risk Band filter so helper text does not crowd the chips */
+.risk-mini-guide {
+    margin-top: 0.35rem !important;
 }
 
 </style>
