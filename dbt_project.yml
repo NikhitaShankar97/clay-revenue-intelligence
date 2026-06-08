@@ -1,0 +1,30 @@
+# Project name should contain only lowercase characters and underscores.
+name: "clay_revenue_intelligence"
+version: "1.0.0"
+config-version: 2
+
+# dbt Cloud profile
+profile: "default"
+
+# File paths
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+# Build artifacts
+target-path: "target"
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+# Model configuration
+models:
+  clay_revenue_intelligence:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: view
