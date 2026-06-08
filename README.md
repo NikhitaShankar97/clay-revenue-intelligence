@@ -137,17 +137,31 @@ The Streamlit app and Sigma workbook read from dbt-built Snowflake marts instead
 
 ## Sigma BI Dashboard
 
-In addition to the Streamlit decision-support app, I connected the dbt-built Snowflake marts to Sigma to create a lightweight self-service BI dashboard.
+I also created a basic Sigma workbook connected to the dbt-built Snowflake marts. The purpose of this dashboard is not to replace the Streamlit app, but to show how the same governed Snowflake/dbt data layer can support a lightweight self-service BI experience.
 
-The Sigma workbook is intentionally simple and is used to show how business users can slice governed GTM data without writing SQL.
+The Sigma dashboard is intentionally simple for now and serves as a starting point for future BI enhancement. It demonstrates how business users could slice GTM data by plan tier, risk band, expansion readiness, ARR, and pipeline efficiency without writing SQL.
 
-It includes:
+Live Sigma workbook:
+
+https://app.sigmacomputing.com/uiuc/workbook/workbook-6Wn8xc4dzFN6rRXhNDtpMI?:link_source=share
+
+Note: The live Sigma workbook may require Sigma workspace login/access.
+
+A PDF export is included for public review:
+
+[View Sigma Dashboard PDF](assets/sigma_dashboard_basic_export.pdf)
+
+The workbook includes:
 
 - GTM health overview
-- Customers by risk band
 - ARR by plan tier
-- Expansion readiness views
-- Churn risk and signal feed views
+- Customers by risk band
+- Top accounts by pipeline efficiency
+- Expansion readiness map
+- Top expansion candidates
+- ARR at risk by industry
+- High-risk account queue
+- GTM signal feed
 
 ---
 
