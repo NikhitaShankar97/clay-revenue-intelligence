@@ -324,12 +324,12 @@ html, body, [class*="css"] { font-family: 'Geist', sans-serif; }
 
 /* Public Streamlit Cloud header spacing fix */
 .block-container {
-    padding-top: 8rem !important;
+    padding-top: 1.25rem !important;
 }
 
 /* Keep Clay header visible below the Streamlit Cloud toolbar */
 .clay-top-header, .app-header, .hero, .top-card {
-    margin-top: 1.5rem !important;
+    margin-top: 0rem !important;
 }
 
 /* Make selected multiselect/filter pills Clay orange */
@@ -417,6 +417,35 @@ span[data-baseweb="tag"] * {
     margin-bottom: 8px;
 }
 
+
+/* Compact label rows so help icons sit beside the label instead of far right */
+.compact-label {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.98rem;
+    color: #31333F;
+    margin-bottom: -0.35rem;
+    line-height: 1.2;
+}
+.help-dot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 15px;
+    height: 15px;
+    border: 1.4px solid #858A93;
+    border-radius: 50%;
+    color: #858A93;
+    font-size: 10px;
+    font-weight: 700;
+    cursor: help;
+}
+.help-dot:hover {
+    border-color: #E8632A;
+    color: #E8632A;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -424,8 +453,6 @@ span[data-baseweb="tag"] * {
 base = run_query(f"SELECT * FROM {MART_PREFIX}.CHURN_RISK_SCORES")
 activation = run_query(f"SELECT * FROM {MART_PREFIX}.ACTIVATION_VELOCITY")
 global_signals = run_query(f"SELECT * FROM {MART_PREFIX}.SIGNAL_FEED")
-
-st.markdown("<div id=\"cloud_toolbar_spacer\" style=\"height:42px;\"></div>", unsafe_allow_html=True)
 
 st.markdown("""
 <div class="topbar">
@@ -447,11 +474,20 @@ with f2:
     selected_industries = st.multiselect("Industry", industry_options, default=industry_options)
 with f3:
     risk_options = sorted(base["RISK_BAND"].dropna().astype(str).unique())
+    st.markdown(
+        """
+        <div class="compact-label">
+            <span>Risk Band</span>
+            <span class="help-dot" title="Risk Band is a customer-health label based on churn-risk signals such as usage depth, pipeline efficiency, support friction, credit usage, and product adoption.">?</span>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
     selected_risk = st.multiselect(
         "Risk Band",
         risk_options,
         default=risk_options,
-        help="Customer-health label based on churn-risk signals such as usage depth, pipeline efficiency, support friction, credit usage, and product adoption."
+        label_visibility="collapsed"
     )
     st.markdown(
         """
@@ -731,35 +767,50 @@ with tab6:
     )
     s1, s2 = st.columns(2)
     with s1:
-        activation_lift = st.slider(
-            "Target activation improvement",
-            0,
-            30,
-            10,
-            help="Assumed improvement in the share of accounts reaching the early activation threshold."
+        st.markdown(
+            """
+            <div class="compact-label">
+                <span>Target activation improvement</span>
+                <span class="help-dot" title="Assumed improvement in the share of accounts reaching the early activation threshold.">?</span>
+            </div>
+            """,
+            unsafe_allow_html=True
         )
-        expansion_capture = st.slider(
-            "Expansion candidate conversion rate",
-            0,
-            100,
-            25,
-            help="Assumed share of expansion-ready accounts that convert into paid expansion."
+        activation_lift = st.slider("Target activation improvement", 0, 30, 10, label_visibility="collapsed")
+
+        st.markdown(
+            """
+            <div class="compact-label">
+                <span>Expansion candidate conversion rate</span>
+                <span class="help-dot" title="Assumed share of expansion-ready accounts that convert into paid expansion.">?</span>
+            </div>
+            """,
+            unsafe_allow_html=True
         )
+        expansion_capture = st.slider("Expansion candidate conversion rate", 0, 100, 25, label_visibility="collapsed")
+
     with s2:
-        claygent_lift = st.slider(
-            "Target Claygent adoption improvement",
-            0,
-            30,
-            10,
-            help="Assumed improvement in Claygent adoption across the selected segment."
+        st.markdown(
+            """
+            <div class="compact-label">
+                <span>Target Claygent adoption improvement</span>
+                <span class="help-dot" title="Assumed improvement in Claygent adoption across the selected segment.">?</span>
+            </div>
+            """,
+            unsafe_allow_html=True
         )
-        churn_save_rate = st.slider(
-            "High-risk account save rate",
-            0,
-            100,
-            20,
-            help="Assumed share of high-risk ARR that Customer Success can retain."
+        claygent_lift = st.slider("Target Claygent adoption improvement", 0, 30, 10, label_visibility="collapsed")
+
+        st.markdown(
+            """
+            <div class="compact-label">
+                <span>High-risk account save rate</span>
+                <span class="help-dot" title="Assumed share of high-risk ARR that Customer Success can retain.">?</span>
+            </div>
+            """,
+            unsafe_allow_html=True
         )
+        churn_save_rate = st.slider("High-risk account save rate", 0, 100, 20, label_visibility="collapsed")
 
     activation_mrr_impact = current_mrr * (activation_lift / 100) * 0.35
     claygent_mrr_impact = current_mrr * (claygent_lift / 100) * 0.28
