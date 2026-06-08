@@ -332,13 +332,13 @@ html, body, [class*="css"] { font-family: 'Geist', sans-serif; }
     margin-top: 1.5rem !important;
 }
 
-/* Make selected multiselect/filter pills blue instead of red */
+/* Make selected multiselect/filter pills Clay orange */
 [data-testid="stMultiSelect"] [data-baseweb="tag"],
 .stMultiSelect [data-baseweb="tag"],
 div[data-baseweb="select"] [data-baseweb="tag"],
 span[data-baseweb="tag"] {
-    background-color: #1F6FEB !important;
-    border-color: #1F6FEB !important;
+    background-color: #E8632A !important;
+    border-color: #E8632A !important;
     color: #FFFFFF !important;
 }
 
@@ -372,6 +372,49 @@ span[data-baseweb="tag"] * {
 }
 .risk-mini-guide span {
     white-space: nowrap;
+}
+
+
+/* Compact filters and forecast controls */
+[data-testid="stMultiSelect"] {
+    margin-bottom: 0.25rem !important;
+}
+
+[data-testid="stSlider"] {
+    padding-top: 0.15rem !important;
+    padding-bottom: 0.15rem !important;
+    margin-bottom: -0.4rem !important;
+}
+
+/* Best-effort Clay orange slider accent */
+[data-testid="stSlider"] [role="slider"] {
+    background-color: #E8632A !important;
+    border-color: #E8632A !important;
+}
+
+[data-testid="stSlider"] [data-baseweb="slider"] div {
+    accent-color: #E8632A !important;
+}
+
+.forecast-control-card {
+    background: #FDFCFA;
+    border: 1px solid #E2DDD6;
+    border-radius: 13px;
+    padding: 14px 18px 4px 18px;
+    margin-bottom: 14px;
+}
+
+.forecast-control-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1A1916;
+    margin-bottom: 2px;
+}
+
+.forecast-control-sub {
+    font-size: 12px;
+    color: #7A756E;
+    margin-bottom: 8px;
 }
 
 </style>
@@ -408,7 +451,7 @@ with f3:
         "Risk Band",
         risk_options,
         default=risk_options,
-        help="Risk Band is a simple customer-health label based on churn-risk signals such as usage depth, pipeline efficiency, support friction, credit usage, and product adoption."
+        help="Customer-health label based on churn-risk signals such as usage depth, pipeline efficiency, support friction, credit usage, and product adoption."
     )
     st.markdown(
         """
@@ -677,10 +720,46 @@ with tab6:
       </div>
     </div>
     """, unsafe_allow_html=True)
-    activation_lift = st.slider("Target activation improvement", 0, 30, 10)
-    claygent_lift = st.slider("Target Claygent adoption improvement", 0, 30, 10)
-    expansion_capture = st.slider("Expansion candidate conversion rate", 0, 100, 25)
-    churn_save_rate = st.slider("High-risk account save rate", 0, 100, 20)
+    st.markdown(
+        """
+        <div class="forecast-control-card">
+          <div class="forecast-control-title">Scenario assumptions</div>
+          <div class="forecast-control-sub">Adjust the GTM levers below to estimate directional MRR impact.</div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    s1, s2 = st.columns(2)
+    with s1:
+        activation_lift = st.slider(
+            "Target activation improvement",
+            0,
+            30,
+            10,
+            help="Assumed improvement in the share of accounts reaching the early activation threshold."
+        )
+        expansion_capture = st.slider(
+            "Expansion candidate conversion rate",
+            0,
+            100,
+            25,
+            help="Assumed share of expansion-ready accounts that convert into paid expansion."
+        )
+    with s2:
+        claygent_lift = st.slider(
+            "Target Claygent adoption improvement",
+            0,
+            30,
+            10,
+            help="Assumed improvement in Claygent adoption across the selected segment."
+        )
+        churn_save_rate = st.slider(
+            "High-risk account save rate",
+            0,
+            100,
+            20,
+            help="Assumed share of high-risk ARR that Customer Success can retain."
+        )
 
     activation_mrr_impact = current_mrr * (activation_lift / 100) * 0.35
     claygent_mrr_impact = current_mrr * (claygent_lift / 100) * 0.28
@@ -703,7 +782,7 @@ with tab6:
     intervention_table["Estimated MRR per GTM Hour"] = intervention_table.apply(lambda r: (safe_divide(r["Estimated MRR Impact"], r["Effort Hours"]) or 0), axis=1)
     st.dataframe(business_table(intervention_table, money_cols=["Estimated MRR Impact","Estimated MRR per GTM Hour"]), use_container_width=True)
     forecast_df = pd.DataFrame({"Scenario":["Current MRR","Activation Lift","Claygent Lift","Expansion Capture","Churn Saved","Forecast MRR"],"Value":[current_mrr,activation_mrr_impact,claygent_mrr_impact,expansion_mrr_impact,churn_mrr_saved,forecast_mrr]})
-    html_bar_chart(forecast_df, "Scenario", "Value", "Scenario Impact", "How each lever contributes to forecast MRR.", "#6B2FA8", "money", max_rows=6)
+    html_bar_chart(forecast_df, "Scenario", "Value", "Scenario Impact", "Visual breakdown of current MRR, each lever, and forecast MRR.", "#6B2FA8", "money", max_rows=6)
 
 with tab7:
     purpose_card("Signal Feed", "Converts Snowflake metrics into prioritized GTM alerts with hypotheses and recommended actions.")
