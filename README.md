@@ -54,7 +54,7 @@ Business users
 
 Architecture diagram will be added here:
 
-![Clay Revenue Intelligence Architecture](assets/architecture.png)
+![Clay Revenue Intelligence Architecture](assets/Architecture.gif)
 
 ---
 
