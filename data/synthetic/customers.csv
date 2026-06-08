@@ -1,1 +1,101 @@
-
+customer_id,company_name,industry,employee_count,created_at,customer_status,primary_use_case
+1,Figma,Data Infrastructure,3748,2026-02-26,active,Outbound prospecting
+2,Rippling,HR Tech,4204,2026-04-03,active,Pipeline generation
+3,Intercom,Ecommerce,751,2026-03-08,churned,AI account research
+4,Verkada,HR Tech,1215,2026-04-27,active,Outbound prospecting
+5,Notion,AI Software,3310,2026-03-09,active,Pipeline generation
+6,Hex,HR Tech,3772,2026-02-12,active,CRM enrichment
+7,Oyster,Marketing Tech,4046,2026-03-21,active,Outbound prospecting
+8,Linear,Cybersecurity,3099,2026-04-16,active,Outbound prospecting
+9,Ramp,AI Software,781,2026-04-26,active,Sales enrichment
+10,Gong,Cybersecurity,901,2026-04-21,active,Sales enrichment
+11,Loom,Marketing Tech,1954,2026-02-02,active,Outbound prospecting
+12,Vercel,HR Tech,3007,2026-02-12,active,Pipeline generation
+13,Retool,FinTech,1127,2026-01-24,active,Sales enrichment
+14,Airtable,SaaS,791,2026-03-24,active,Sales enrichment
+15,Canva,Ecommerce,4872,2026-03-28,active,Sales enrichment
+16,Datadog,Ecommerce,4897,2026-02-25,active,Sales enrichment
+17,ClickUp,Ecommerce,3703,2026-02-21,active,Pipeline generation
+18,Miro,HR Tech,3328,2026-04-09,active,CRM enrichment
+19,Webflow,FinTech,3384,2026-04-21,active,Pipeline generation
+20,Plaid,FinTech,4174,2026-03-16,active,Outbound prospecting
+21,Mercury,Marketing Tech,4278,2026-04-25,active,Pipeline generation
+22,Brex,Marketing Tech,737,2026-02-22,active,CRM enrichment
+23,Apollo,Ecommerce,1769,2026-01-30,active,AI account research
+24,Amplitude,Marketing Tech,62,2026-04-15,churned,AI account research
+25,Segment,Cybersecurity,531,2026-02-07,active,Pipeline generation
+26,PostHog,Ecommerce,1011,2026-04-07,active,Sales enrichment
+27,Navan,Cybersecurity,1831,2026-01-01,active,CRM enrichment
+28,Deel,Healthcare,4734,2026-01-01,active,Sales enrichment
+29,Zapier,Healthcare,3142,2026-04-01,active,AI account research
+30,Attio,HR Tech,938,2026-01-25,active,Outbound prospecting
+31,GrowthCo 31,Healthcare,1798,2026-03-02,active,Pipeline generation
+32,GrowthCo 32,Healthcare,2980,2026-01-02,active,CRM enrichment
+33,GrowthCo 33,Data Infrastructure,2899,2026-01-05,active,Outbound prospecting
+34,GrowthCo 34,Data Infrastructure,656,2026-03-22,active,Pipeline generation
+35,GrowthCo 35,Cybersecurity,1951,2026-01-04,active,AI account research
+36,GrowthCo 36,HR Tech,1035,2026-03-04,active,CRM enrichment
+37,GrowthCo 37,Marketing Tech,3340,2026-01-02,active,Outbound prospecting
+38,GrowthCo 38,Ecommerce,4388,2026-01-11,active,Pipeline generation
+39,GrowthCo 39,Data Infrastructure,2185,2026-02-11,active,Pipeline generation
+40,GrowthCo 40,Data Infrastructure,4787,2026-01-23,active,CRM enrichment
+41,GrowthCo 41,SaaS,4613,2026-01-03,active,Outbound prospecting
+42,GrowthCo 42,Ecommerce,4706,2026-04-02,active,Sales enrichment
+43,GrowthCo 43,FinTech,599,2026-03-29,active,Pipeline generation
+44,GrowthCo 44,FinTech,721,2026-01-30,active,AI account research
+45,GrowthCo 45,SaaS,410,2026-01-29,active,Pipeline generation
+46,GrowthCo 46,Ecommerce,4063,2026-03-26,active,AI account research
+47,GrowthCo 47,FinTech,726,2026-04-07,active,Sales enrichment
+48,GrowthCo 48,SaaS,3390,2026-05-01,active,CRM enrichment
+49,GrowthCo 49,AI Software,1354,2026-02-14,active,Outbound prospecting
+50,GrowthCo 50,Data Infrastructure,606,2026-05-01,active,CRM enrichment
+51,GrowthCo 51,AI Software,3687,2026-04-23,active,Outbound prospecting
+52,GrowthCo 52,Healthcare,1934,2026-01-02,active,Sales enrichment
+53,GrowthCo 53,HR Tech,4489,2026-02-02,active,CRM enrichment
+54,GrowthCo 54,Ecommerce,3801,2026-02-22,active,Sales enrichment
+55,GrowthCo 55,HR Tech,4678,2026-02-19,active,AI account research
+56,GrowthCo 56,FinTech,81,2026-01-25,active,Pipeline generation
+57,GrowthCo 57,Healthcare,1018,2026-02-11,active,Outbound prospecting
+58,GrowthCo 58,Healthcare,4335,2026-03-05,active,AI account research
+59,GrowthCo 59,Healthcare,2782,2026-02-01,active,CRM enrichment
+60,GrowthCo 60,Ecommerce,315,2026-03-12,active,Pipeline generation
+61,GrowthCo 61,Marketing Tech,3899,2026-01-23,active,AI account research
+62,GrowthCo 62,Cybersecurity,314,2026-03-25,active,Pipeline generation
+63,GrowthCo 63,FinTech,4723,2026-02-05,active,AI account research
+64,GrowthCo 64,Data Infrastructure,4942,2026-03-01,active,CRM enrichment
+65,GrowthCo 65,Healthcare,1123,2026-01-21,churned,Outbound prospecting
+66,GrowthCo 66,Marketing Tech,4531,2026-02-20,active,AI account research
+67,GrowthCo 67,Data Infrastructure,178,2026-03-23,active,AI account research
+68,GrowthCo 68,Cybersecurity,3782,2026-01-14,active,Sales enrichment
+69,GrowthCo 69,Ecommerce,439,2026-01-07,churned,CRM enrichment
+70,GrowthCo 70,Ecommerce,695,2026-02-21,active,Pipeline generation
+71,GrowthCo 71,Ecommerce,3951,2026-04-07,active,AI account research
+72,GrowthCo 72,Marketing Tech,3608,2026-02-26,active,Pipeline generation
+73,GrowthCo 73,Data Infrastructure,194,2026-02-14,active,CRM enrichment
+74,GrowthCo 74,Marketing Tech,3617,2026-02-23,churned,CRM enrichment
+75,GrowthCo 75,AI Software,1760,2026-03-17,active,Sales enrichment
+76,GrowthCo 76,Marketing Tech,732,2026-01-28,churned,Sales enrichment
+77,GrowthCo 77,HR Tech,530,2026-04-02,active,Outbound prospecting
+78,GrowthCo 78,Cybersecurity,246,2026-03-30,active,CRM enrichment
+79,GrowthCo 79,SaaS,4831,2026-03-04,active,Sales enrichment
+80,GrowthCo 80,FinTech,885,2026-03-14,active,CRM enrichment
+81,GrowthCo 81,Healthcare,3975,2026-02-01,active,AI account research
+82,GrowthCo 82,SaaS,2707,2026-03-12,active,CRM enrichment
+83,GrowthCo 83,Ecommerce,4120,2026-04-07,active,Pipeline generation
+84,GrowthCo 84,Data Infrastructure,3016,2026-03-05,churned,Sales enrichment
+85,GrowthCo 85,Data Infrastructure,3627,2026-03-15,churned,Pipeline generation
+86,GrowthCo 86,Cybersecurity,2796,2026-01-04,active,CRM enrichment
+87,GrowthCo 87,SaaS,266,2026-04-15,active,CRM enrichment
+88,GrowthCo 88,Marketing Tech,2947,2026-04-07,active,AI account research
+89,GrowthCo 89,AI Software,779,2026-03-13,active,Outbound prospecting
+90,GrowthCo 90,AI Software,2596,2026-01-20,active,Pipeline generation
+91,GrowthCo 91,AI Software,3014,2026-04-07,active,AI account research
+92,GrowthCo 92,HR Tech,3925,2026-02-17,active,CRM enrichment
+93,GrowthCo 93,Healthcare,3774,2026-01-08,active,Pipeline generation
+94,GrowthCo 94,HR Tech,4702,2026-01-09,active,CRM enrichment
+95,GrowthCo 95,HR Tech,4100,2026-01-03,active,Outbound prospecting
+96,GrowthCo 96,SaaS,1162,2026-02-14,active,Sales enrichment
+97,GrowthCo 97,Cybersecurity,3764,2026-02-14,active,AI account research
+98,GrowthCo 98,Data Infrastructure,3587,2026-01-30,active,Pipeline generation
+99,GrowthCo 99,AI Software,1791,2026-02-18,active,Sales enrichment
+100,GrowthCo 100,Data Infrastructure,4986,2026-03-09,active,CRM enrichment

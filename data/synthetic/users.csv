@@ -1,0 +1,473 @@
+user_id,customer_id,email_domain,user_role,created_at,last_active_at
+1,1,figma.com,Admin,2026-02-27,2026-04-14
+2,1,figma.com,RevOps,2026-03-07,2026-05-19
+3,1,figma.com,Admin,2026-03-07,2026-04-07
+4,1,figma.com,Admin,2026-02-27,2026-05-21
+5,2,rippling.com,Founder,2026-04-09,2026-05-19
+6,2,rippling.com,AE,2026-04-05,2026-05-02
+7,2,rippling.com,Marketing Ops,2026-04-13,2026-06-03
+8,2,rippling.com,Founder,2026-04-14,2026-05-09
+9,2,rippling.com,AE,2026-04-12,2026-05-23
+10,2,rippling.com,SDR,2026-04-11,2026-04-14
+11,3,intercom.com,Marketing Ops,2026-03-19,2026-05-21
+12,3,intercom.com,AE,2026-03-19,2026-05-23
+13,3,intercom.com,Admin,2026-03-20,2026-03-25
+14,3,intercom.com,AE,2026-03-12,2026-04-12
+15,4,verkada.com,Founder,2026-05-09,2026-06-20
+16,4,verkada.com,SDR,2026-05-08,2026-07-22
+17,4,verkada.com,AE,2026-05-04,2026-05-22
+18,5,notion.com,Marketing Ops,2026-03-10,2026-03-16
+19,5,notion.com,Founder,2026-03-11,2026-05-16
+20,5,notion.com,Admin,2026-03-15,2026-05-28
+21,5,notion.com,Marketing Ops,2026-03-13,2026-04-18
+22,6,hex.com,AE,2026-02-25,2026-05-03
+23,6,hex.com,Admin,2026-02-16,2026-03-15
+24,6,hex.com,Marketing Ops,2026-02-17,2026-03-12
+25,7,oyster.com,Founder,2026-03-21,2026-03-26
+26,7,oyster.com,Founder,2026-04-01,2026-05-09
+27,7,oyster.com,Founder,2026-03-25,2026-03-30
+28,7,oyster.com,AE,2026-04-03,2026-07-01
+29,7,oyster.com,Admin,2026-04-02,2026-04-27
+30,7,oyster.com,Founder,2026-04-04,2026-04-19
+31,7,oyster.com,RevOps,2026-03-23,2026-04-25
+32,8,linear.com,RevOps,2026-04-16,2026-04-27
+33,8,linear.com,AE,2026-04-30,2026-07-24
+34,9,ramp.com,AE,2026-05-07,2026-06-18
+35,9,ramp.com,SDR,2026-05-08,2026-06-22
+36,9,ramp.com,SDR,2026-04-30,2026-07-16
+37,9,ramp.com,AE,2026-05-03,2026-05-21
+38,10,gong.com,RevOps,2026-05-02,2026-07-31
+39,10,gong.com,Marketing Ops,2026-04-21,2026-06-21
+40,11,loom.com,Admin,2026-02-06,2026-03-05
+41,11,loom.com,Founder,2026-02-13,2026-02-16
+42,11,loom.com,Founder,2026-02-10,2026-02-28
+43,11,loom.com,Marketing Ops,2026-02-02,2026-03-25
+44,11,loom.com,AE,2026-02-05,2026-03-20
+45,11,loom.com,RevOps,2026-02-07,2026-02-23
+46,11,loom.com,Founder,2026-02-08,2026-05-05
+47,12,vercel.com,Admin,2026-02-12,2026-04-08
+48,12,vercel.com,Founder,2026-02-17,2026-05-17
+49,12,vercel.com,Founder,2026-02-15,2026-05-02
+50,12,vercel.com,Founder,2026-02-22,2026-05-19
+51,12,vercel.com,SDR,2026-02-14,2026-03-25
+52,12,vercel.com,Founder,2026-02-17,2026-05-17
+53,13,retool.com,AE,2026-01-24,2026-03-26
+54,13,retool.com,Founder,2026-02-06,2026-04-13
+55,13,retool.com,Founder,2026-02-05,2026-02-08
+56,13,retool.com,RevOps,2026-02-07,2026-04-14
+57,13,retool.com,Marketing Ops,2026-01-27,2026-04-15
+58,14,airtable.com,Marketing Ops,2026-04-05,2026-04-26
+59,15,canva.com,Admin,2026-04-02,2026-06-14
+60,15,canva.com,Admin,2026-04-07,2026-04-11
+61,15,canva.com,Admin,2026-03-28,2026-05-22
+62,16,datadog.com,AE,2026-02-25,2026-03-05
+63,16,datadog.com,Admin,2026-03-08,2026-05-14
+64,16,datadog.com,AE,2026-03-03,2026-05-12
+65,16,datadog.com,AE,2026-03-04,2026-03-19
+66,16,datadog.com,Admin,2026-03-04,2026-04-06
+67,16,datadog.com,Marketing Ops,2026-03-05,2026-03-09
+68,16,datadog.com,RevOps,2026-03-08,2026-05-02
+69,17,clickup.com,Marketing Ops,2026-02-21,2026-05-12
+70,17,clickup.com,Founder,2026-02-24,2026-05-12
+71,17,clickup.com,RevOps,2026-02-24,2026-04-03
+72,17,clickup.com,Founder,2026-02-21,2026-03-06
+73,17,clickup.com,Marketing Ops,2026-03-06,2026-05-05
+74,17,clickup.com,Founder,2026-03-03,2026-03-17
+75,18,miro.com,Admin,2026-04-11,2026-06-11
+76,18,miro.com,AE,2026-04-10,2026-05-15
+77,18,miro.com,Marketing Ops,2026-04-16,2026-05-18
+78,18,miro.com,Admin,2026-04-11,2026-04-17
+79,18,miro.com,Admin,2026-04-20,2026-04-29
+80,19,webflow.com,RevOps,2026-05-04,2026-05-24
+81,19,webflow.com,Marketing Ops,2026-04-22,2026-07-07
+82,19,webflow.com,Founder,2026-04-29,2026-05-17
+83,19,webflow.com,Founder,2026-05-01,2026-07-17
+84,19,webflow.com,Admin,2026-04-25,2026-06-30
+85,19,webflow.com,Admin,2026-04-24,2026-07-12
+86,19,webflow.com,SDR,2026-05-03,2026-06-15
+87,20,plaid.com,AE,2026-03-18,2026-04-13
+88,20,plaid.com,AE,2026-03-16,2026-03-29
+89,20,plaid.com,SDR,2026-03-30,2026-05-10
+90,20,plaid.com,Marketing Ops,2026-03-25,2026-05-25
+91,20,plaid.com,SDR,2026-03-23,2026-06-13
+92,20,plaid.com,RevOps,2026-03-21,2026-04-16
+93,20,plaid.com,Marketing Ops,2026-03-18,2026-03-31
+94,20,plaid.com,Marketing Ops,2026-03-25,2026-04-30
+95,21,mercury.com,Marketing Ops,2026-04-27,2026-05-01
+96,21,mercury.com,Admin,2026-05-07,2026-07-15
+97,21,mercury.com,SDR,2026-04-26,2026-06-11
+98,21,mercury.com,AE,2026-05-01,2026-05-25
+99,21,mercury.com,Admin,2026-04-25,2026-06-17
+100,21,mercury.com,RevOps,2026-05-05,2026-07-29
+101,21,mercury.com,Admin,2026-05-09,2026-07-24
+102,21,mercury.com,Founder,2026-05-05,2026-07-31
+103,22,brex.com,RevOps,2026-02-27,2026-05-10
+104,22,brex.com,Founder,2026-03-06,2026-04-09
+105,22,brex.com,AE,2026-02-28,2026-05-13
+106,23,apollo.com,SDR,2026-02-10,2026-04-13
+107,23,apollo.com,SDR,2026-02-11,2026-02-24
+108,23,apollo.com,AE,2026-02-12,2026-03-11
+109,23,apollo.com,RevOps,2026-02-11,2026-04-08
+110,23,apollo.com,Founder,2026-02-06,2026-04-07
+111,23,apollo.com,RevOps,2026-01-30,2026-03-21
+112,23,apollo.com,SDR,2026-02-08,2026-02-27
+113,23,apollo.com,AE,2026-02-10,2026-02-14
+114,24,amplitude.com,SDR,2026-04-17,2026-05-12
+115,24,amplitude.com,RevOps,2026-04-17,2026-05-07
+116,24,amplitude.com,Founder,2026-04-22,2026-05-18
+117,24,amplitude.com,Founder,2026-04-16,2026-06-15
+118,24,amplitude.com,RevOps,2026-04-28,2026-05-28
+119,24,amplitude.com,Marketing Ops,2026-04-18,2026-04-28
+120,24,amplitude.com,SDR,2026-04-17,2026-05-14
+121,25,segment.com,Marketing Ops,2026-02-20,2026-03-23
+122,25,segment.com,RevOps,2026-02-18,2026-02-27
+123,25,segment.com,Marketing Ops,2026-02-20,2026-04-26
+124,25,segment.com,Marketing Ops,2026-02-13,2026-03-26
+125,26,posthog.com,SDR,2026-04-15,2026-06-14
+126,27,navan.com,Admin,2026-01-01,2026-02-18
+127,27,navan.com,SDR,2026-01-10,2026-03-12
+128,27,navan.com,Admin,2026-01-05,2026-02-22
+129,27,navan.com,Marketing Ops,2026-01-01,2026-02-17
+130,27,navan.com,SDR,2026-01-03,2026-02-26
+131,27,navan.com,AE,2026-01-01,2026-01-16
+132,27,navan.com,Admin,2026-01-08,2026-02-05
+133,27,navan.com,RevOps,2026-01-09,2026-03-18
+134,28,deel.com,SDR,2026-01-09,2026-03-20
+135,28,deel.com,SDR,2026-01-05,2026-02-05
+136,28,deel.com,Founder,2026-01-12,2026-02-18
+137,28,deel.com,RevOps,2026-01-02,2026-01-26
+138,28,deel.com,RevOps,2026-01-01,2026-03-13
+139,28,deel.com,Marketing Ops,2026-01-05,2026-01-13
+140,28,deel.com,RevOps,2026-01-03,2026-02-10
+141,28,deel.com,Marketing Ops,2026-01-05,2026-01-14
+142,29,zapier.com,Admin,2026-04-11,2026-06-27
+143,29,zapier.com,RevOps,2026-04-08,2026-06-26
+144,30,attio.com,Admin,2026-02-03,2026-03-20
+145,30,attio.com,RevOps,2026-01-28,2026-03-08
+146,30,attio.com,Admin,2026-02-02,2026-02-18
+147,30,attio.com,Admin,2026-01-28,2026-04-17
+148,30,attio.com,RevOps,2026-02-06,2026-03-20
+149,30,attio.com,Marketing Ops,2026-02-02,2026-03-02
+150,31,growthco31.com,AE,2026-03-02,2026-04-20
+151,31,growthco31.com,Admin,2026-03-09,2026-04-08
+152,31,growthco31.com,Marketing Ops,2026-03-05,2026-03-10
+153,31,growthco31.com,SDR,2026-03-08,2026-04-14
+154,31,growthco31.com,Admin,2026-03-12,2026-04-06
+155,31,growthco31.com,SDR,2026-03-04,2026-03-15
+156,31,growthco31.com,SDR,2026-03-08,2026-03-21
+157,32,growthco32.com,AE,2026-01-16,2026-03-27
+158,32,growthco32.com,RevOps,2026-01-10,2026-01-21
+159,32,growthco32.com,SDR,2026-01-12,2026-02-03
+160,32,growthco32.com,SDR,2026-01-12,2026-03-28
+161,32,growthco32.com,SDR,2026-01-09,2026-01-29
+162,32,growthco32.com,SDR,2026-01-14,2026-04-11
+163,33,growthco33.com,RevOps,2026-01-17,2026-04-05
+164,33,growthco33.com,SDR,2026-01-17,2026-01-23
+165,33,growthco33.com,AE,2026-01-16,2026-04-08
+166,33,growthco33.com,Marketing Ops,2026-01-18,2026-03-16
+167,33,growthco33.com,Admin,2026-01-19,2026-01-29
+168,34,growthco34.com,SDR,2026-03-23,2026-05-31
+169,34,growthco34.com,Marketing Ops,2026-03-25,2026-06-07
+170,34,growthco34.com,Admin,2026-04-04,2026-06-26
+171,34,growthco34.com,Admin,2026-04-01,2026-06-23
+172,34,growthco34.com,Founder,2026-03-25,2026-04-14
+173,34,growthco34.com,Marketing Ops,2026-03-28,2026-04-28
+174,34,growthco34.com,AE,2026-03-25,2026-04-30
+175,35,growthco35.com,Marketing Ops,2026-01-13,2026-01-29
+176,35,growthco35.com,RevOps,2026-01-08,2026-02-22
+177,35,growthco35.com,Admin,2026-01-16,2026-04-09
+178,35,growthco35.com,RevOps,2026-01-05,2026-03-20
+179,35,growthco35.com,Founder,2026-01-07,2026-03-13
+180,35,growthco35.com,RevOps,2026-01-07,2026-01-20
+181,35,growthco35.com,AE,2026-01-10,2026-04-01
+182,35,growthco35.com,RevOps,2026-01-12,2026-03-28
+183,36,growthco36.com,SDR,2026-03-06,2026-03-12
+184,36,growthco36.com,Marketing Ops,2026-03-17,2026-05-18
+185,36,growthco36.com,RevOps,2026-03-09,2026-05-05
+186,36,growthco36.com,RevOps,2026-03-13,2026-05-26
+187,36,growthco36.com,RevOps,2026-03-10,2026-04-29
+188,36,growthco36.com,RevOps,2026-03-18,2026-03-22
+189,37,growthco37.com,Founder,2026-01-11,2026-03-12
+190,37,growthco37.com,Marketing Ops,2026-01-07,2026-03-11
+191,38,growthco38.com,AE,2026-01-23,2026-03-07
+192,38,growthco38.com,Admin,2026-01-21,2026-03-24
+193,38,growthco38.com,Founder,2026-01-13,2026-04-05
+194,38,growthco38.com,SDR,2026-01-13,2026-04-05
+195,38,growthco38.com,AE,2026-01-20,2026-03-19
+196,39,growthco39.com,SDR,2026-02-24,2026-04-08
+197,39,growthco39.com,Marketing Ops,2026-02-25,2026-04-26
+198,40,growthco40.com,Admin,2026-02-04,2026-03-05
+199,40,growthco40.com,SDR,2026-01-30,2026-04-20
+200,40,growthco40.com,AE,2026-02-03,2026-03-18
+201,41,growthco41.com,Founder,2026-01-05,2026-01-08
+202,41,growthco41.com,SDR,2026-01-03,2026-01-06
+203,42,growthco42.com,SDR,2026-04-10,2026-06-04
+204,42,growthco42.com,RevOps,2026-04-12,2026-05-24
+205,42,growthco42.com,AE,2026-04-08,2026-04-29
+206,42,growthco42.com,Marketing Ops,2026-04-03,2026-06-14
+207,42,growthco42.com,Founder,2026-04-09,2026-05-20
+208,42,growthco42.com,RevOps,2026-04-08,2026-04-17
+209,42,growthco42.com,Founder,2026-04-05,2026-05-21
+210,42,growthco42.com,Marketing Ops,2026-04-16,2026-05-09
+211,43,growthco43.com,Marketing Ops,2026-04-04,2026-05-22
+212,43,growthco43.com,Marketing Ops,2026-04-04,2026-04-08
+213,44,growthco44.com,Founder,2026-02-01,2026-03-25
+214,44,growthco44.com,Admin,2026-02-11,2026-04-03
+215,44,growthco44.com,RevOps,2026-02-07,2026-03-16
+216,44,growthco44.com,AE,2026-02-13,2026-05-13
+217,44,growthco44.com,SDR,2026-02-05,2026-04-16
+218,44,growthco44.com,AE,2026-02-04,2026-02-09
+219,44,growthco44.com,AE,2026-02-07,2026-04-29
+220,44,growthco44.com,Founder,2026-02-12,2026-04-12
+221,45,growthco45.com,Founder,2026-02-01,2026-03-29
+222,45,growthco45.com,RevOps,2026-02-01,2026-03-29
+223,45,growthco45.com,Founder,2026-02-04,2026-04-18
+224,46,growthco46.com,Admin,2026-03-26,2026-04-30
+225,46,growthco46.com,RevOps,2026-04-01,2026-06-02
+226,46,growthco46.com,Marketing Ops,2026-03-26,2026-04-05
+227,46,growthco46.com,SDR,2026-04-02,2026-06-11
+228,46,growthco46.com,Admin,2026-03-29,2026-05-23
+229,46,growthco46.com,RevOps,2026-04-09,2026-05-18
+230,46,growthco46.com,RevOps,2026-03-30,2026-05-07
+231,47,growthco47.com,Marketing Ops,2026-04-14,2026-06-24
+232,47,growthco47.com,Marketing Ops,2026-04-12,2026-04-22
+233,48,growthco48.com,Marketing Ops,2026-05-03,2026-06-25
+234,48,growthco48.com,AE,2026-05-02,2026-07-02
+235,48,growthco48.com,Marketing Ops,2026-05-15,2026-05-21
+236,48,growthco48.com,Marketing Ops,2026-05-08,2026-06-02
+237,48,growthco48.com,Founder,2026-05-04,2026-06-15
+238,48,growthco48.com,Founder,2026-05-12,2026-06-13
+239,48,growthco48.com,SDR,2026-05-10,2026-06-10
+240,48,growthco48.com,Founder,2026-05-11,2026-08-06
+241,49,growthco49.com,Founder,2026-02-14,2026-03-31
+242,49,growthco49.com,Marketing Ops,2026-02-21,2026-03-09
+243,49,growthco49.com,Founder,2026-02-18,2026-04-13
+244,49,growthco49.com,Founder,2026-02-16,2026-02-28
+245,49,growthco49.com,Admin,2026-02-24,2026-03-21
+246,49,growthco49.com,SDR,2026-02-23,2026-03-15
+247,50,growthco50.com,Marketing Ops,2026-05-06,2026-06-09
+248,51,growthco51.com,RevOps,2026-05-05,2026-06-10
+249,51,growthco51.com,Admin,2026-05-03,2026-06-29
+250,51,growthco51.com,RevOps,2026-04-25,2026-05-12
+251,51,growthco51.com,Founder,2026-04-23,2026-05-22
+252,51,growthco51.com,Marketing Ops,2026-04-27,2026-05-29
+253,51,growthco51.com,SDR,2026-05-05,2026-07-08
+254,51,growthco51.com,SDR,2026-04-26,2026-06-23
+255,52,growthco52.com,AE,2026-01-03,2026-03-13
+256,53,growthco53.com,RevOps,2026-02-04,2026-03-19
+257,53,growthco53.com,SDR,2026-02-08,2026-05-02
+258,53,growthco53.com,Founder,2026-02-08,2026-02-28
+259,53,growthco53.com,SDR,2026-02-02,2026-03-19
+260,53,growthco53.com,AE,2026-02-02,2026-04-03
+261,54,growthco54.com,Marketing Ops,2026-02-22,2026-05-04
+262,55,growthco55.com,Admin,2026-02-26,2026-03-11
+263,55,growthco55.com,Founder,2026-03-05,2026-05-28
+264,55,growthco55.com,RevOps,2026-03-01,2026-04-18
+265,55,growthco55.com,RevOps,2026-02-28,2026-04-20
+266,55,growthco55.com,Admin,2026-02-24,2026-03-25
+267,55,growthco55.com,Founder,2026-03-02,2026-04-21
+268,55,growthco55.com,RevOps,2026-02-26,2026-03-02
+269,55,growthco55.com,Admin,2026-02-24,2026-04-12
+270,56,growthco56.com,SDR,2026-02-06,2026-03-03
+271,56,growthco56.com,RevOps,2026-01-28,2026-04-08
+272,56,growthco56.com,SDR,2026-02-02,2026-02-05
+273,56,growthco56.com,AE,2026-02-02,2026-02-25
+274,56,growthco56.com,RevOps,2026-02-07,2026-04-29
+275,56,growthco56.com,Founder,2026-02-04,2026-04-20
+276,57,growthco57.com,Admin,2026-02-13,2026-04-15
+277,57,growthco57.com,SDR,2026-02-17,2026-04-12
+278,57,growthco57.com,Admin,2026-02-19,2026-05-10
+279,57,growthco57.com,RevOps,2026-02-11,2026-04-24
+280,57,growthco57.com,SDR,2026-02-15,2026-04-27
+281,57,growthco57.com,Admin,2026-02-16,2026-04-26
+282,57,growthco57.com,Admin,2026-02-23,2026-03-26
+283,58,growthco58.com,Marketing Ops,2026-03-07,2026-04-06
+284,58,growthco58.com,Founder,2026-03-05,2026-04-03
+285,59,growthco59.com,RevOps,2026-02-13,2026-04-16
+286,60,growthco60.com,Founder,2026-03-25,2026-05-21
+287,60,growthco60.com,Founder,2026-03-12,2026-04-10
+288,61,growthco61.com,AE,2026-01-29,2026-02-05
+289,61,growthco61.com,SDR,2026-02-05,2026-03-06
+290,61,growthco61.com,RevOps,2026-02-01,2026-03-13
+291,61,growthco61.com,SDR,2026-02-01,2026-02-09
+292,61,growthco61.com,Admin,2026-02-06,2026-04-04
+293,61,growthco61.com,SDR,2026-01-30,2026-03-15
+294,61,growthco61.com,Founder,2026-01-24,2026-04-02
+295,61,growthco61.com,Admin,2026-01-30,2026-02-04
+296,62,growthco62.com,SDR,2026-03-27,2026-04-01
+297,62,growthco62.com,AE,2026-03-28,2026-06-15
+298,62,growthco62.com,AE,2026-04-04,2026-04-07
+299,63,growthco63.com,RevOps,2026-02-15,2026-03-18
+300,63,growthco63.com,Admin,2026-02-19,2026-04-17
+301,63,growthco63.com,SDR,2026-02-16,2026-05-12
+302,63,growthco63.com,AE,2026-02-16,2026-04-30
+303,64,growthco64.com,Founder,2026-03-07,2026-04-28
+304,64,growthco64.com,Founder,2026-03-05,2026-05-11
+305,64,growthco64.com,Admin,2026-03-10,2026-04-10
+306,64,growthco64.com,Admin,2026-03-01,2026-04-20
+307,64,growthco64.com,Marketing Ops,2026-03-10,2026-06-01
+308,64,growthco64.com,AE,2026-03-12,2026-04-27
+309,65,growthco65.com,SDR,2026-02-04,2026-02-22
+310,65,growthco65.com,Founder,2026-01-31,2026-03-05
+311,65,growthco65.com,AE,2026-01-23,2026-03-18
+312,66,growthco66.com,Marketing Ops,2026-03-02,2026-05-05
+313,66,growthco66.com,SDR,2026-02-26,2026-03-27
+314,66,growthco66.com,RevOps,2026-02-23,2026-03-15
+315,66,growthco66.com,AE,2026-02-23,2026-05-24
+316,66,growthco66.com,SDR,2026-02-21,2026-05-04
+317,66,growthco66.com,Admin,2026-03-01,2026-03-23
+318,66,growthco66.com,AE,2026-03-05,2026-03-25
+319,67,growthco67.com,Marketing Ops,2026-03-23,2026-05-28
+320,68,growthco68.com,Admin,2026-01-18,2026-03-11
+321,68,growthco68.com,Admin,2026-01-27,2026-02-16
+322,68,growthco68.com,AE,2026-01-24,2026-03-08
+323,68,growthco68.com,Marketing Ops,2026-01-19,2026-03-17
+324,68,growthco68.com,AE,2026-01-25,2026-02-18
+325,68,growthco68.com,RevOps,2026-01-18,2026-02-02
+326,68,growthco68.com,Admin,2026-01-26,2026-03-24
+327,68,growthco68.com,Founder,2026-01-22,2026-02-26
+328,69,growthco69.com,SDR,2026-01-17,2026-03-05
+329,69,growthco69.com,Founder,2026-01-17,2026-01-28
+330,69,growthco69.com,RevOps,2026-01-18,2026-02-08
+331,69,growthco69.com,Founder,2026-01-19,2026-03-17
+332,69,growthco69.com,Admin,2026-01-15,2026-01-30
+333,69,growthco69.com,Founder,2026-01-08,2026-02-11
+334,69,growthco69.com,AE,2026-01-17,2026-02-05
+335,69,growthco69.com,Admin,2026-01-09,2026-01-21
+336,70,growthco70.com,Admin,2026-03-05,2026-05-23
+337,70,growthco70.com,RevOps,2026-03-03,2026-05-27
+338,70,growthco70.com,AE,2026-02-28,2026-03-10
+339,71,growthco71.com,SDR,2026-04-15,2026-06-17
+340,71,growthco71.com,RevOps,2026-04-07,2026-05-13
+341,71,growthco71.com,AE,2026-04-07,2026-06-10
+342,71,growthco71.com,Admin,2026-04-14,2026-06-01
+343,71,growthco71.com,AE,2026-04-11,2026-06-29
+344,71,growthco71.com,SDR,2026-04-12,2026-05-10
+345,71,growthco71.com,SDR,2026-04-08,2026-04-20
+346,72,growthco72.com,Marketing Ops,2026-03-03,2026-04-13
+347,72,growthco72.com,Marketing Ops,2026-03-07,2026-04-12
+348,72,growthco72.com,Marketing Ops,2026-03-10,2026-04-08
+349,72,growthco72.com,RevOps,2026-03-11,2026-04-22
+350,72,growthco72.com,Founder,2026-03-10,2026-05-07
+351,72,growthco72.com,AE,2026-03-05,2026-05-31
+352,73,growthco73.com,SDR,2026-02-25,2026-05-15
+353,73,growthco73.com,SDR,2026-02-27,2026-05-03
+354,73,growthco73.com,Admin,2026-02-28,2026-05-06
+355,73,growthco73.com,AE,2026-02-24,2026-04-20
+356,73,growthco73.com,Founder,2026-02-14,2026-03-08
+357,73,growthco73.com,Marketing Ops,2026-02-26,2026-04-03
+358,73,growthco73.com,RevOps,2026-02-24,2026-03-14
+359,73,growthco73.com,RevOps,2026-02-20,2026-03-16
+360,74,growthco74.com,SDR,2026-02-25,2026-05-16
+361,74,growthco74.com,AE,2026-02-23,2026-04-28
+362,74,growthco74.com,Marketing Ops,2026-03-05,2026-05-08
+363,74,growthco74.com,Marketing Ops,2026-03-08,2026-03-19
+364,74,growthco74.com,Admin,2026-03-01,2026-03-27
+365,74,growthco74.com,Admin,2026-03-02,2026-03-23
+366,74,growthco74.com,Founder,2026-02-27,2026-05-10
+367,75,growthco75.com,Admin,2026-03-25,2026-04-30
+368,75,growthco75.com,AE,2026-03-29,2026-06-11
+369,75,growthco75.com,AE,2026-03-29,2026-05-22
+370,75,growthco75.com,AE,2026-03-24,2026-06-20
+371,75,growthco75.com,Admin,2026-03-30,2026-04-09
+372,75,growthco75.com,RevOps,2026-03-23,2026-04-30
+373,75,growthco75.com,Marketing Ops,2026-03-21,2026-05-04
+374,76,growthco76.com,SDR,2026-02-02,2026-04-04
+375,76,growthco76.com,SDR,2026-02-08,2026-02-25
+376,76,growthco76.com,SDR,2026-02-11,2026-03-09
+377,76,growthco76.com,RevOps,2026-02-05,2026-04-08
+378,76,growthco76.com,RevOps,2026-02-06,2026-04-02
+379,76,growthco76.com,SDR,2026-02-03,2026-02-22
+380,76,growthco76.com,Founder,2026-02-06,2026-02-19
+381,76,growthco76.com,RevOps,2026-02-11,2026-04-24
+382,77,growthco77.com,Admin,2026-04-09,2026-05-12
+383,77,growthco77.com,AE,2026-04-13,2026-04-30
+384,77,growthco77.com,AE,2026-04-04,2026-04-30
+385,78,growthco78.com,Admin,2026-03-31,2026-04-08
+386,79,growthco79.com,Founder,2026-03-11,2026-05-03
+387,79,growthco79.com,SDR,2026-03-09,2026-05-21
+388,79,growthco79.com,RevOps,2026-03-08,2026-04-18
+389,80,growthco80.com,Marketing Ops,2026-03-27,2026-05-17
+390,80,growthco80.com,RevOps,2026-03-24,2026-06-11
+391,80,growthco80.com,Marketing Ops,2026-03-28,2026-05-08
+392,80,growthco80.com,Founder,2026-03-21,2026-05-15
+393,80,growthco80.com,RevOps,2026-03-22,2026-06-18
+394,80,growthco80.com,Admin,2026-03-18,2026-03-29
+395,81,growthco81.com,RevOps,2026-02-05,2026-02-18
+396,81,growthco81.com,RevOps,2026-02-05,2026-04-22
+397,82,growthco82.com,Marketing Ops,2026-03-22,2026-05-20
+398,82,growthco82.com,SDR,2026-03-16,2026-04-18
+399,82,growthco82.com,Marketing Ops,2026-03-26,2026-05-02
+400,82,growthco82.com,AE,2026-03-12,2026-04-23
+401,82,growthco82.com,SDR,2026-03-18,2026-04-12
+402,82,growthco82.com,RevOps,2026-03-23,2026-06-20
+403,82,growthco82.com,Admin,2026-03-21,2026-05-09
+404,82,growthco82.com,Admin,2026-03-24,2026-04-09
+405,83,growthco83.com,Founder,2026-04-13,2026-06-16
+406,83,growthco83.com,SDR,2026-04-11,2026-05-11
+407,84,growthco84.com,SDR,2026-03-10,2026-06-06
+408,84,growthco84.com,RevOps,2026-03-14,2026-05-16
+409,84,growthco84.com,RevOps,2026-03-15,2026-06-06
+410,85,growthco85.com,Marketing Ops,2026-03-17,2026-05-15
+411,85,growthco85.com,Admin,2026-03-24,2026-04-09
+412,85,growthco85.com,Admin,2026-03-29,2026-04-15
+413,85,growthco85.com,Marketing Ops,2026-03-26,2026-04-05
+414,85,growthco85.com,Marketing Ops,2026-03-23,2026-05-12
+415,85,growthco85.com,Founder,2026-03-28,2026-04-09
+416,86,growthco86.com,RevOps,2026-01-17,2026-03-01
+417,87,growthco87.com,Admin,2026-04-19,2026-07-14
+418,87,growthco87.com,RevOps,2026-04-23,2026-06-18
+419,88,growthco88.com,Founder,2026-04-12,2026-05-06
+420,88,growthco88.com,Admin,2026-04-07,2026-04-11
+421,88,growthco88.com,Marketing Ops,2026-04-13,2026-04-24
+422,88,growthco88.com,SDR,2026-04-14,2026-05-13
+423,88,growthco88.com,Founder,2026-04-11,2026-06-12
+424,88,growthco88.com,Marketing Ops,2026-04-17,2026-05-26
+425,88,growthco88.com,Founder,2026-04-19,2026-06-01
+426,88,growthco88.com,SDR,2026-04-09,2026-05-11
+427,89,growthco89.com,RevOps,2026-03-15,2026-04-26
+428,89,growthco89.com,AE,2026-03-26,2026-05-28
+429,89,growthco89.com,Admin,2026-03-15,2026-04-06
+430,89,growthco89.com,Founder,2026-03-18,2026-05-05
+431,89,growthco89.com,RevOps,2026-03-25,2026-05-18
+432,89,growthco89.com,AE,2026-03-27,2026-06-24
+433,90,growthco90.com,RevOps,2026-01-30,2026-03-15
+434,90,growthco90.com,Admin,2026-01-25,2026-02-11
+435,90,growthco90.com,Founder,2026-02-03,2026-04-06
+436,91,growthco91.com,Admin,2026-04-14,2026-04-17
+437,91,growthco91.com,SDR,2026-04-08,2026-07-07
+438,91,growthco91.com,Founder,2026-04-11,2026-07-09
+439,91,growthco91.com,Marketing Ops,2026-04-08,2026-06-09
+440,91,growthco91.com,Marketing Ops,2026-04-14,2026-05-13
+441,91,growthco91.com,Marketing Ops,2026-04-19,2026-05-15
+442,91,growthco91.com,Admin,2026-04-20,2026-06-14
+443,91,growthco91.com,AE,2026-04-20,2026-07-07
+444,92,growthco92.com,Marketing Ops,2026-02-17,2026-04-05
+445,92,growthco92.com,Marketing Ops,2026-03-01,2026-05-25
+446,92,growthco92.com,Admin,2026-02-19,2026-04-15
+447,92,growthco92.com,Admin,2026-02-19,2026-04-22
+448,92,growthco92.com,Founder,2026-02-28,2026-04-23
+449,92,growthco92.com,AE,2026-02-24,2026-04-10
+450,93,growthco93.com,Marketing Ops,2026-01-08,2026-02-25
+451,94,growthco94.com,RevOps,2026-01-12,2026-04-10
+452,95,growthco95.com,Admin,2026-01-07,2026-03-02
+453,95,growthco95.com,SDR,2026-01-14,2026-03-14
+454,95,growthco95.com,Founder,2026-01-13,2026-03-19
+455,96,growthco96.com,SDR,2026-02-21,2026-05-18
+456,97,growthco97.com,Marketing Ops,2026-02-15,2026-04-18
+457,97,growthco97.com,AE,2026-02-25,2026-04-17
+458,97,growthco97.com,SDR,2026-02-14,2026-03-26
+459,97,growthco97.com,Founder,2026-02-20,2026-05-04
+460,97,growthco97.com,Founder,2026-02-27,2026-03-31
+461,98,growthco98.com,RevOps,2026-02-05,2026-04-10
+462,99,growthco99.com,SDR,2026-02-26,2026-03-31
+463,99,growthco99.com,AE,2026-02-21,2026-04-30
+464,99,growthco99.com,Admin,2026-02-19,2026-04-10
+465,99,growthco99.com,Marketing Ops,2026-02-23,2026-04-03
+466,99,growthco99.com,AE,2026-02-25,2026-04-07
+467,100,growthco100.com,Marketing Ops,2026-03-10,2026-05-01
+468,100,growthco100.com,Founder,2026-03-20,2026-05-04
+469,100,growthco100.com,Marketing Ops,2026-03-18,2026-03-29
+470,100,growthco100.com,SDR,2026-03-20,2026-06-05
+471,100,growthco100.com,Marketing Ops,2026-03-14,2026-05-06
+472,100,growthco100.com,AE,2026-03-13,2026-04-23
