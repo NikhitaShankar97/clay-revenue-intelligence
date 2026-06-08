@@ -1,0 +1,395 @@
+version: 2
+
+sources:
+  - name: raw
+    database: CLAY_REVENUE_INTELLIGENCE
+    schema: RAW
+    tables:
+      - name: customers
+        description: Raw customer/account table containing company profile and account metadata.
+
+      - name: subscriptions
+        description: Raw subscription and billing table containing plan tier, billing interval, and contract value.
+
+      - name: usage_ledger
+        description: Raw usage ledger containing action usage and Data Credit consumption events.
+
+      - name: workflow_runs
+        description: Raw workflow execution table containing workflow runs, status, and timing.
+
+      - name: integration_runs
+        description: Raw integration execution table containing provider/integration activity such as Claygent and Waterfall.
+
+      - name: support_tickets
+        description: Raw support ticket table containing customer support interactions and ticket priority.
+
+      - name: gtm_outcomes
+        description: Raw GTM outcome table containing meetings, opportunities, pipeline, and closed-won revenue.
+
+models:
+  - name: stg_customers
+    description: Clean customer account-level data from the raw Clay-style customer table.
+    columns:
+      - name: customer_id
+        description: Unique customer/account identifier.
+        tests:
+          - not_null
+          - unique
+
+      - name: company_name
+        description: Customer company name.
+
+      - name: industry
+        description: Customer industry segment.
+
+      - name: employee_count
+        description: Approximate number of employees at the customer company.
+
+      - name: created_at
+        description: Customer signup or account creation date.
+
+      - name: customer_status
+        description: Current status of the customer account.
+
+      - name: primary_use_case
+        description: Main use case the customer uses Clay-like workflows for.
+
+  - name: stg_subscriptions
+    description: Clean subscription-level data with ARR calculated from monthly or annual billing fields.
+    columns:
+      - name: subscription_id
+        description: Unique subscription identifier.
+        tests:
+          - not_null
+          - unique
+
+      - name: customer_id
+        description: Customer/account identifier connected to the subscription.
+        tests:
+          - not_null
+
+      - name: plan_tier
+        description: Customer subscription plan tier.
+
+      - name: billing_interval
+        description: Billing cadence such as monthly or annual.
+
+      - name: monthly_amount
+        description: Monthly recurring amount for monthly plans.
+
+      - name: annual_contract_value
+        description: Annual contract value for annual plans.
+
+      - name: subscription_status
+        description: Current subscription status.
+
+      - name: arr
+        description: Annual recurring revenue calculated from billing interval and contract values.
+
+  - name: stg_usage_ledger
+    description: Clean usage ledger model containing customer action usage and Data Credit consumption.
+    columns:
+      - name: usage_transaction_id
+        description: Unique usage transaction identifier.
+        tests:
+          - not_null
+          - unique
+
+      - name: customer_id
+        description: Customer/account identifier tied to the usage event.
+        tests:
+          - not_null
+
+      - name: event_timestamp
+        description: Timestamp of the usage event.
+
+      - name: usage_type
+        description: Type of usage, such as action or data credit.
+
+      - name: usage_category
+        description: Category of usage activity.
+
+      - name: units_consumed
+        description: Number of units consumed in the usage transaction.
+
+  - name: stg_workflow_runs
+    description: Clean workflow run model containing workflow execution activity by customer.
+    columns:
+      - name: workflow_run_id
+        description: Unique workflow run identifier.
+        tests:
+          - not_null
+          - unique
+
+      - name: customer_id
+        description: Customer/account identifier tied to the workflow run.
+        tests:
+          - not_null
+
+      - name: user_id
+        description: User who triggered or owns the workflow run.
+
+      - name: workflow_id
+        description: Workflow identifier.
+
+      - name: started_at
+        description: Timestamp when the workflow run started.
+
+      - name: completed_at
+        description: Timestamp when the workflow run completed.
+
+      - name: run_status
+        description: Workflow run status.
+
+  - name: stg_integration_runs
+    description: Clean integration run model containing provider and integration activity by workflow and customer.
+    columns:
+      - name: integration_run_id
+        description: Unique integration run identifier.
+        tests:
+          - not_null
+          - unique
+
+      - name: customer_id
+        description: Customer/account identifier tied to the integration run.
+        tests:
+          - not_null
+
+      - name: workflow_run_id
+        description: Workflow run associated with the integration run.
+
+      - name: integration_name
+        description: Name of the integration used, such as Claygent or Waterfall.
+
+      - name: started_at
+        description: Timestamp when the integration run started.
+
+      - name: run_status
+        description: Integration run status.
+
+      - name: records_processed
+        description: Number of records processed by the integration.
+
+  - name: stg_support_tickets
+    description: Clean support ticket model containing customer support activity and ticket priority.
+    columns:
+      - name: ticket_id
+        description: Unique support ticket identifier.
+        tests:
+          - not_null
+          - unique
+
+      - name: customer_id
+        description: Customer/account identifier tied to the support ticket.
+        tests:
+          - not_null
+
+      - name: created_at
+        description: Timestamp when the support ticket was created.
+
+      - name: ticket_category
+        description: Category of the support issue.
+
+      - name: priority
+        description: Support ticket priority.
+
+      - name: resolved_at
+        description: Timestamp when the support ticket was resolved.
+
+  - name: stg_gtm_outcomes
+    description: Clean GTM outcomes model containing pipeline, meetings, opportunities, and revenue outcomes by customer.
+    columns:
+      - name: outcome_id
+        description: Unique GTM outcome identifier.
+        tests:
+          - not_null
+          - unique
+
+      - name: customer_id
+        description: Customer/account identifier tied to GTM outcomes.
+        tests:
+          - not_null
+
+      - name: event_date
+        description: Date of the GTM outcome event.
+
+      - name: meetings_booked
+        description: Number of meetings booked.
+
+      - name: opportunities_created
+        description: Number of opportunities created.
+
+      - name: pipeline_generated
+        description: Pipeline generated by the customer.
+
+      - name: closed_won_revenue
+        description: Closed-won revenue generated by the customer.
+
+  - name: customer_health
+    description: Customer-level health mart combining account profile, subscription, usage, workflow, support, and GTM outcome data.
+    columns:
+      - name: customer_id
+        description: Unique customer/account identifier.
+        tests:
+          - not_null
+          - unique
+
+      - name: company_name
+        description: Customer company name.
+
+      - name: industry
+        description: Customer industry segment.
+
+      - name: plan_tier
+        description: Customer subscription plan tier.
+
+      - name: arr
+        description: Annual recurring revenue calculated from subscription data.
+
+      - name: data_credits_used
+        description: Total Data Credits consumed by the customer.
+
+      - name: workflow_runs
+        description: Total workflow runs completed or attempted by the customer.
+
+      - name: successful_workflows
+        description: Number of successful workflow runs.
+
+      - name: support_tickets
+        description: Number of support tickets created by the customer.
+
+      - name: high_priority_tickets
+        description: Number of high-priority support tickets.
+
+      - name: meetings_booked
+        description: Number of meetings booked from GTM outcomes.
+
+      - name: opportunities_created
+        description: Number of opportunities created from GTM outcomes.
+
+      - name: pipeline_generated
+        description: Pipeline generated from GTM outcomes.
+
+      - name: closed_won_revenue
+        description: Closed-won revenue generated from GTM outcomes.
+
+  - name: activation_velocity
+    description: Measures early customer activation behavior in the first 14 days and connects it to downstream GTM outcomes.
+    columns:
+      - name: customer_id
+        description: Unique customer/account identifier.
+        tests:
+          - not_null
+          - unique
+
+      - name: company_name
+        description: Customer company name.
+
+      - name: workflows_first_14d
+        description: Number of workflow runs within 14 days of account creation.
+
+      - name: integrations_used
+        description: Number of distinct integrations used in the early activation window.
+
+      - name: claygent_adopted
+        description: Flag indicating whether the customer used Claygent during early activation.
+
+      - name: pipeline_generated
+        description: Pipeline generated by the customer.
+
+      - name: meetings_booked
+        description: Meetings booked by the customer.
+
+      - name: opportunities_created
+        description: Opportunities created by the customer.
+
+  - name: churn_risk_scores
+    description: Customer-level mart that scores churn risk, expansion readiness, and recommended GTM action.
+    columns:
+      - name: customer_id
+        description: Unique customer/account identifier.
+        tests:
+          - not_null
+          - unique
+
+      - name: company_name
+        description: Customer company name.
+
+      - name: industry
+        description: Customer industry segment.
+
+      - name: plan_tier
+        description: Customer subscription plan tier.
+
+      - name: arr
+        description: Annual recurring revenue for the customer.
+
+      - name: data_credits_used
+        description: Total Data Credits consumed by the customer.
+
+      - name: workflow_runs
+        description: Number of workflow runs by the customer.
+
+      - name: pipeline_generated
+        description: Pipeline generated by the customer.
+
+      - name: pipeline_per_credit
+        description: Pipeline generated per Data Credit consumed.
+
+      - name: integration_depth
+        description: Number of distinct integrations used by the customer.
+
+      - name: claygent_used
+        description: Flag indicating whether the customer used Claygent.
+
+      - name: churn_risk_score
+        description: Rule-based churn risk score using credit burn, pipeline efficiency, workflow depth, support friction, and product adoption signals.
+        tests:
+          - not_null
+
+      - name: risk_band
+        description: Churn risk category.
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['LOW', 'MEDIUM', 'HIGH']
+
+      - name: expansion_score
+        description: Score estimating whether a non-enterprise account is ready for expansion.
+        tests:
+          - not_null
+
+      - name: recommended_action
+        description: Recommended GTM action for Sales or Customer Success.
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['Enterprise upsell', 'CS intervention', 'Claygent onboarding', 'Monitor']
+
+  - name: signal_feed
+    description: Prioritized GTM signal feed that converts model outputs into business alerts, hypotheses, and recommended actions.
+    columns:
+      - name: signal_type
+        description: Category of business signal.
+
+      - name: signal_title
+        description: Short title of the detected signal.
+
+      - name: metric_value
+        description: Primary metric value associated with the signal.
+
+      - name: comparison_value
+        description: Secondary comparison value associated with the signal, where applicable.
+
+      - name: severity
+        description: Priority level for GTM action.
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['P0', 'P1']
+
+      - name: hypothesis
+        description: Business hypothesis explaining why the signal may be occurring.
+
+      - name: recommended_action
+        description: Recommended action for the GTM team.
