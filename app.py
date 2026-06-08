@@ -83,8 +83,22 @@ def business_table(df: pd.DataFrame, money_cols=None, bool_cols=None):
 
     return out
 
-def html_bar_chart(df, label_col, value_col, title, subtitle, color="#E8632A", decimal_places=0):
-    """Render a safe HTML bar chart that handles nulls, zeroes, Decimal values, and old format arguments."""
+def html_bar_chart(
+    df,
+    label_col,
+    value_col,
+    title,
+    subtitle,
+    color="#E8632A",
+    decimal_places=0,
+    max_rows=None,
+    **kwargs
+):
+    """Render a safe HTML bar chart.
+
+    Supports older calls that pass max_rows or format strings like 'number'/'money'.
+    Handles nulls, zeroes, Decimal values, strings, and empty data safely.
+    """
     import html
 
     st.markdown(
@@ -105,6 +119,15 @@ def html_bar_chart(df, label_col, value_col, title, subtitle, color="#E8632A", d
 
     chart_df = df[[label_col, value_col]].copy()
     chart_df[value_col] = pd.to_numeric(chart_df[value_col], errors="coerce").fillna(0)
+
+    # Limit rows if requested by existing chart calls.
+    if max_rows is not None:
+        try:
+            max_rows_int = int(max_rows)
+            if max_rows_int > 0:
+                chart_df = chart_df.head(max_rows_int)
+        except Exception:
+            pass
 
     try:
         max_value = float(chart_df[value_col].max())
