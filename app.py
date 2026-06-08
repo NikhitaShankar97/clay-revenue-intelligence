@@ -84,12 +84,14 @@ def business_table(df: pd.DataFrame, money_cols=None, bool_cols=None):
     return out
 
 def html_bar_chart(df, label_col, value_col, title, subtitle, color="#E8632A", decimal_places=0):
-    """Render a safe HTML bar chart that handles nulls, zeroes, Decimal values, and display-format strings."""
+    """Render a safe HTML bar chart that handles nulls, zeroes, Decimal values, and old format arguments."""
+    import html
+
     st.markdown(
         f"""
         <div class="card">
-          <div class="card-title">{title}</div>
-          <div class="card-sub">{subtitle}</div>
+          <div class="card-title">{html.escape(str(title))}</div>
+          <div class="card-sub">{html.escape(str(subtitle))}</div>
         """,
         unsafe_allow_html=True
     )
@@ -104,7 +106,10 @@ def html_bar_chart(df, label_col, value_col, title, subtitle, color="#E8632A", d
     chart_df = df[[label_col, value_col]].copy()
     chart_df[value_col] = pd.to_numeric(chart_df[value_col], errors="coerce").fillna(0)
 
-    max_value = chart_df[value_col].max()
+    try:
+        max_value = float(chart_df[value_col].max())
+    except Exception:
+        max_value = 0.0
 
     if pd.isna(max_value) or max_value <= 0:
         st.markdown(
@@ -113,12 +118,10 @@ def html_bar_chart(df, label_col, value_col, title, subtitle, color="#E8632A", d
         )
         return
 
-    # Some existing chart calls pass strings like "money" or "number" as the last argument.
-    # This keeps those calls safe on Streamlit Cloud.
     format_mode = None
     if isinstance(decimal_places, str):
         format_mode = decimal_places.lower().strip()
-        decimal_places_num = 0 if format_mode in {"money", "currency", "integer", "count"} else 2
+        decimal_places_num = 0 if format_mode in {"money", "currency", "number", "integer", "count"} else 2
     else:
         try:
             decimal_places_num = int(decimal_places)
@@ -126,8 +129,15 @@ def html_bar_chart(df, label_col, value_col, title, subtitle, color="#E8632A", d
             decimal_places_num = 0
 
     for _, row in chart_df.iterrows():
-        label = str(row[label_col])
-        value = float(row[value_col]) if pd.notna(row[value_col]) else 0.0
+        label = html.escape(str(row[label_col]))
+
+        try:
+            value = float(row[value_col])
+        except Exception:
+            value = 0.0
+
+        if pd.isna(value) or value < 0:
+            value = 0.0
 
         width = max(4, min(100, (value / max_value) * 100))
 
