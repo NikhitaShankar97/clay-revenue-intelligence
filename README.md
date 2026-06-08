@@ -52,8 +52,6 @@ Streamlit decision-support app + Sigma BI dashboard
 Business users
 ```
 
-Architecture diagram will be added here:
-
 ![Clay Revenue Intelligence Architecture](assets/Architecture.gif)
 
 ---
@@ -68,6 +66,82 @@ Architecture diagram will be added here:
 | BI layer | Sigma |
 | Programming | Python, SQL |
 | Data model | Synthetic GTM customer, usage, support, and revenue data |
+
+---
+
+## Synthetic Data
+
+This project uses synthetic GTM data created for portfolio and demo purposes. The dataset simulates customer profiles, plan tiers, account ownership, product events, workflow runs, usage credits, CRM pipeline activity, support friction, plan changes, integration runs, and revenue outcomes.
+
+The synthetic CSV files are stored under:
+
+```text
+data/
+```
+
+Included synthetic source files:
+
+```text
+data/synthetic
+├── account_owners.csv
+├── crm_pipeline_events.csv
+├── customers.csv
+├── gtm_outcomes.csv
+├── integration_runs.csv
+├── plan_change_events.csv
+├── product_events.csv
+├── subscriptions.csv
+├── support_tickets.csv
+├── usage_ledger.csv
+├── users.csv
+└── workflow_runs.csv
+```
+
+The synthetic data generation script is stored under:
+
+```text
+scripts/generate_synthetic_data.py
+```
+
+In a production version, these synthetic files would be replaced by real source systems such as CRM, billing, product events, support tickets, enrichment logs, and GTM activity data.
+
+---
+
+## Snowflake Warehouse Layer
+
+Snowflake was used as the warehouse layer for this project. Synthetic CSV files were loaded into the `RAW` schema, and dbt transformed those raw tables into staging models and analytics marts.
+
+The main Snowflake flow is:
+
+```text
+generated_data CSVs
+        ↓
+Snowflake RAW schema
+        ↓
+dbt staging views
+        ↓
+dbt analytics marts
+        ↓
+Streamlit app and Sigma workbook
+```
+
+Supporting Snowflake setup and validation SQL is included under:
+
+```text
+snowflake/
+```
+
+The Snowflake folder is included to show the warehouse setup and validation logic used in the project. It does not include any credentials, passwords, tokens, or private connection details.
+
+Example files:
+
+```text
+snowflake/
+├── 01_create_database_and_schemas.sql
+├── 02_create_raw_tables.sql
+├── 03_load_data_notes.md
+└── 04_validation_queries.sql
+```
 
 ---
 
@@ -124,8 +198,12 @@ The dbt layer transforms raw GTM data into clean analytics-ready models.
 | Model | Purpose |
 |---|---|
 | `stg_customers` | Cleans customer-level source data |
+| `stg_subscriptions` | Cleans subscription and ARR data |
 | `stg_usage_ledger` | Standardizes product usage and credit consumption data |
 | `stg_workflow_runs` | Tracks workflow activity and success patterns |
+| `stg_integration_runs` | Tracks integration usage such as Claygent and Waterfall |
+| `stg_support_tickets` | Standardizes support ticket and customer friction data |
+| `stg_gtm_outcomes` | Cleans pipeline, meeting, opportunity, and revenue outcome data |
 | `customer_health` | Combines usage, pipeline, support, and adoption signals |
 | `activation_velocity` | Measures early workflow adoption and activation behavior |
 | `churn_risk_scores` | Scores accounts by churn-risk indicators |
@@ -202,13 +280,35 @@ clay-revenue-intelligence/
 ├── requirements.txt
 ├── README.md
 ├── .gitignore
+├── dbt_project.yml
 │
-├── dbt/
-│   ├── dbt_project.yml
-│   └── models/
+├── models/
+│   ├── schema.yml
+│   ├── staging/
+│   └── marts/
 │
-├── sigma/
-│   └── sigma_dashboard_notes.md
+├── data/sythetic
+│   ├── account_owners.csv
+│   ├── crm_pipeline_events.csv
+│   ├── customers.csv
+│   ├── gtm_outcomes.csv
+│   ├── integration_runs.csv
+│   ├── plan_change_events.csv
+│   ├── product_events.csv
+│   ├── subscriptions.csv
+│   ├── support_tickets.csv
+│   ├── usage_ledger.csv
+│   ├── users.csv
+│   └── workflow_runs.csv
+│
+├── scripts/
+│   └── generate_synthetic_data.py
+│
+├── snowflake/
+│   ├── 01_create_database_and_schemas.sql
+│   ├── 02_create_raw_tables.sql
+│   ├── 03_load_data_notes.md
+│   └── 04_validation_queries.sql
 │
 └── assets/
     ├── Architecture.gif
