@@ -211,7 +211,8 @@ clay-revenue-intelligence/
 │   └── sigma_dashboard_notes.md
 │
 └── assets/
-    └── architecture.png
+    ├── Architecture.gif
+    └── sigma_dashboard_basic_export.pdf
 ```
 
 ---
