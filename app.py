@@ -84,7 +84,7 @@ def business_table(df: pd.DataFrame, money_cols=None, bool_cols=None):
     return out
 
 def html_bar_chart(df, label_col, value_col, title, subtitle, color="#E8632A", decimal_places=0):
-    """Render a safe HTML bar chart that will not fail on null, zero, Decimal, or empty values."""
+    """Render a safe HTML bar chart that handles nulls, zeroes, Decimal values, and display-format strings."""
     st.markdown(
         f"""
         <div class="card">
@@ -113,16 +113,30 @@ def html_bar_chart(df, label_col, value_col, title, subtitle, color="#E8632A", d
         )
         return
 
+    # Some existing chart calls pass strings like "money" or "number" as the last argument.
+    # This keeps those calls safe on Streamlit Cloud.
+    format_mode = None
+    if isinstance(decimal_places, str):
+        format_mode = decimal_places.lower().strip()
+        decimal_places_num = 0 if format_mode in {"money", "currency", "integer", "count"} else 2
+    else:
+        try:
+            decimal_places_num = int(decimal_places)
+        except Exception:
+            decimal_places_num = 0
+
     for _, row in chart_df.iterrows():
         label = str(row[label_col])
         value = float(row[value_col]) if pd.notna(row[value_col]) else 0.0
 
         width = max(4, min(100, (value / max_value) * 100))
 
-        if decimal_places == 0:
+        if format_mode in {"money", "currency"}:
+            display_value = money(value)
+        elif format_mode in {"number", "integer", "count"}:
             display_value = f"{value:,.0f}"
         else:
-            display_value = f"{value:,.{decimal_places}f}"
+            display_value = f"{value:,.{decimal_places_num}f}"
 
         st.markdown(
             f"""
@@ -274,28 +288,57 @@ html, body, [class*="css"] { font-family: 'Geist', sans-serif; }
 }
 
 
+
 /* Public Streamlit Cloud header spacing fix */
 .block-container {
-    padding-top: 5.25rem !important;
+    padding-top: 8rem !important;
 }
 
 /* Keep Clay header visible below the Streamlit Cloud toolbar */
 .clay-top-header, .app-header, .hero, .top-card {
-    margin-top: 0.75rem !important;
+    margin-top: 1.5rem !important;
 }
 
 /* Make selected multiselect/filter pills blue instead of red */
-.stMultiSelect [data-baseweb="tag"] {
+[data-testid="stMultiSelect"] [data-baseweb="tag"],
+.stMultiSelect [data-baseweb="tag"],
+div[data-baseweb="select"] [data-baseweb="tag"],
+span[data-baseweb="tag"] {
     background-color: #1F6FEB !important;
     border-color: #1F6FEB !important;
-    color: white !important;
+    color: #FFFFFF !important;
 }
-.stMultiSelect [data-baseweb="tag"] span {
-    color: white !important;
+
+[data-testid="stMultiSelect"] [data-baseweb="tag"] *,
+.stMultiSelect [data-baseweb="tag"] *,
+div[data-baseweb="select"] [data-baseweb="tag"] *,
+span[data-baseweb="tag"] * {
+    color: #FFFFFF !important;
+    fill: #FFFFFF !important;
 }
-.stMultiSelect [data-baseweb="tag"] svg {
-    color: white !important;
-    fill: white !important;
+
+/* Risk helper note */
+.risk-helper {
+    margin-top: -0.45rem;
+    margin-bottom: 1.1rem;
+    color: #6E6963;
+    font-size: 0.86rem;
+    line-height: 1.35;
+}
+
+/* Compact risk band helper below the Risk Band filter */
+.risk-mini-guide {
+    margin-top: -0.35rem;
+    display: flex;
+    gap: 0.55rem;
+    flex-wrap: wrap;
+    color: #6E6963;
+    font-size: 0.78rem;
+    font-style: italic;
+    line-height: 1.25;
+}
+.risk-mini-guide span {
+    white-space: nowrap;
 }
 
 </style>
@@ -306,6 +349,8 @@ base = run_query(f"SELECT * FROM {MART_PREFIX}.CHURN_RISK_SCORES")
 activation = run_query(f"SELECT * FROM {MART_PREFIX}.ACTIVATION_VELOCITY")
 global_signals = run_query(f"SELECT * FROM {MART_PREFIX}.SIGNAL_FEED")
 
+st.markdown("<div id=\"cloud_toolbar_spacer\" style=\"height:42px;\"></div>", unsafe_allow_html=True)
+
 st.markdown("""
 <div class="topbar">
   <div class="brand"><div class="brand-mark">C</div><span class="brand-name">Clay</span><span class="brand-sub">Revenue Intelligence</span></div>
@@ -315,7 +360,7 @@ st.markdown("""
 
 st.markdown('<div class="small-note">Dynamic analytics app using public Clay product concepts and synthetic data. All KPIs, diagnostics, risk scores, and recommendations recalculate from dbt-built Snowflake models and respond to filters.</div>', unsafe_allow_html=True)
 
-st.markdown('<div class="filter-card"><div class="card-title">Segment Filters</div><div class="card-sub">Use these filters to analyze GTM health by plan, industry, and risk band. Risk band summarizes churn-risk signals from usage, pipeline efficiency, support friction, and product adoption.</div></div>', unsafe_allow_html=True)
+st.markdown('<div class="filter-card"><div class="card-title">Segment Filters</div><div class="card-sub">Use these filters to analyze GTM health by plan, industry, and risk band.</div></div>', unsafe_allow_html=True)
 
 f1, f2, f3 = st.columns(3)
 with f1:
@@ -326,8 +371,22 @@ with f2:
     selected_industries = st.multiselect("Industry", industry_options, default=industry_options)
 with f3:
     risk_options = sorted(base["RISK_BAND"].dropna().astype(str).unique())
-    selected_risk = st.multiselect("Risk Band", risk_options, default=risk_options)
-    st.caption("Risk Band meaning: HIGH = needs Customer Success attention, MEDIUM = monitor for early warning signs, LOW = healthier account behavior based on usage, pipeline efficiency, support friction, and product adoption.")
+    selected_risk = st.multiselect(
+        "Risk Band",
+        risk_options,
+        default=risk_options,
+        help="Risk Band is a simple customer-health label based on churn-risk signals such as usage depth, pipeline efficiency, support friction, credit usage, and product adoption."
+    )
+    st.markdown(
+        """
+        <div class="risk-mini-guide">
+            <span><b>HIGH</b> · CS attention</span>
+            <span><b>MEDIUM</b> · monitor</span>
+            <span><b>LOW</b> · healthier</span>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 filtered = base[
     (base["PLAN_TIER"].isin(selected_plans))
@@ -336,6 +395,11 @@ filtered = base[
 ].copy()
 
 filtered_ids = filtered["CUSTOMER_ID"].unique().tolist()
+if filtered.empty:
+    st.warning(
+        "The selected filter combination has no matching accounts. Try adding more plan tiers, industries, or risk bands to broaden the segment."
+    )
+
 activation_filtered = activation[activation["CUSTOMER_ID"].isin(filtered_ids)].copy()
 
 def compute_activation_multiplier(act_df):
