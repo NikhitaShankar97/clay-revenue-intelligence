@@ -14,6 +14,14 @@ https://clay-revenue-intelligence.streamlit.app/
 
 ---
 
+## Demo Video
+
+Watch the project walkthrough:
+
+[View Demo Video](https://drive.google.com/file/d/1myC2VvyljWLBQ4f85bczDpQe_W-xmZa9/view?usp=sharing)
+
+---
+
 ## Project Overview
 
 GTM teams often have customer data spread across product usage, billing, CRM, support, and sales activity systems. The challenge is not just storing this data, but turning it into clear answers:
