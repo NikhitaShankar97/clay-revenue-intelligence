@@ -2,7 +2,7 @@
 
 A Snowflake, dbt, Streamlit, and Sigma project that turns GTM usage, product adoption, pipeline, and churn-risk signals into business-ready revenue intelligence.
 
-This project was built as a Clay-inspired analytics system to show how raw customer and product signals can be transformed into actionable insights for Revenue Operations, Sales, Customer Success, and GTM leadership.
+This project was built as a [Clay](https://www.clay.com/)-inspired analytics system to show how raw customer and product signals can be transformed into actionable insights for Revenue Operations, Sales, Customer Success, and GTM leadership.
 
 ---
 
