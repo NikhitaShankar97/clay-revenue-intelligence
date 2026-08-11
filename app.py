@@ -17,8 +17,62 @@ MART_SCHEMA = "DBT_NSHANKAR"
 MART_PREFIX = f"{DB_NAME}.{MART_SCHEMA}"
 
 
+USE_LOCAL_DEMO_DATA = True
+
+
+@st.cache_data(show_spinner=False)
+def load_demo_tables():
+    """Local demo marts used when the original Snowflake free trial environment is unavailable.
+
+    These dataframes mirror the dbt mart outputs expected by the app so the public portfolio
+    demo remains usable without requiring a live Snowflake warehouse.
+    """
+    base = pd.DataFrame([
+        {"CUSTOMER_ID": 1, "COMPANY_NAME": "GrowthCo 99", "INDUSTRY": "SaaS", "PLAN_TIER": "Pro", "ARR": 12000, "WORKFLOW_RUNS": 96, "DATA_CREDITS_USED": 16616, "PIPELINE_GENERATED": 8400000, "PIPELINE_PER_CREDIT": 505.54, "EXPANSION_SCORE": 91.4, "CHURN_RISK_SCORE": 34.2, "RISK_BAND": "LOW", "SUPPORT_TICKETS": 1, "CLAYGENT_USED": 1, "INTEGRATION_DEPTH": 5, "RECOMMENDED_ACTION": "Enterprise upsell"},
+        {"CUSTOMER_ID": 2, "COMPANY_NAME": "GrowthCo 92", "INDUSTRY": "Fintech", "PLAN_TIER": "Pro", "ARR": 18000, "WORKFLOW_RUNS": 78, "DATA_CREDITS_USED": 14500, "PIPELINE_GENERATED": 3600000, "PIPELINE_PER_CREDIT": 248.28, "EXPANSION_SCORE": 80.6, "CHURN_RISK_SCORE": 42.0, "RISK_BAND": "MEDIUM", "SUPPORT_TICKETS": 2, "CLAYGENT_USED": 1, "INTEGRATION_DEPTH": 4, "RECOMMENDED_ACTION": "Enterprise upsell"},
+        {"CUSTOMER_ID": 3, "COMPANY_NAME": "GrowthCo 53", "INDUSTRY": "Healthcare", "PLAN_TIER": "Pro", "ARR": 22000, "WORKFLOW_RUNS": 64, "DATA_CREDITS_USED": 12800, "PIPELINE_GENERATED": 2100000, "PIPELINE_PER_CREDIT": 164.06, "EXPANSION_SCORE": 76.0, "CHURN_RISK_SCORE": 48.3, "RISK_BAND": "MEDIUM", "SUPPORT_TICKETS": 2, "CLAYGENT_USED": 1, "INTEGRATION_DEPTH": 4, "RECOMMENDED_ACTION": "Enterprise upsell"},
+        {"CUSTOMER_ID": 4, "COMPANY_NAME": "OpsFlow 41", "INDUSTRY": "SaaS", "PLAN_TIER": "Pro", "ARR": 9000, "WORKFLOW_RUNS": 18, "DATA_CREDITS_USED": 9200, "PIPELINE_GENERATED": 310000, "PIPELINE_PER_CREDIT": 33.70, "EXPANSION_SCORE": 45.2, "CHURN_RISK_SCORE": 82.5, "RISK_BAND": "HIGH", "SUPPORT_TICKETS": 8, "CLAYGENT_USED": 0, "INTEGRATION_DEPTH": 2, "RECOMMENDED_ACTION": "CS workflow audit"},
+        {"CUSTOMER_ID": 5, "COMPANY_NAME": "DataNest 18", "INDUSTRY": "Ecommerce", "PLAN_TIER": "Pro", "ARR": 10000, "WORKFLOW_RUNS": 21, "DATA_CREDITS_USED": 8700, "PIPELINE_GENERATED": 370000, "PIPELINE_PER_CREDIT": 42.53, "EXPANSION_SCORE": 49.7, "CHURN_RISK_SCORE": 79.1, "RISK_BAND": "HIGH", "SUPPORT_TICKETS": 7, "CLAYGENT_USED": 0, "INTEGRATION_DEPTH": 2, "RECOMMENDED_ACTION": "CS workflow audit"},
+        {"CUSTOMER_ID": 6, "COMPANY_NAME": "ScaleLabs 22", "INDUSTRY": "SaaS", "PLAN_TIER": "Starter", "ARR": 6000, "WORKFLOW_RUNS": 39, "DATA_CREDITS_USED": 6800, "PIPELINE_GENERATED": 850000, "PIPELINE_PER_CREDIT": 125.00, "EXPANSION_SCORE": 71.2, "CHURN_RISK_SCORE": 55.5, "RISK_BAND": "MEDIUM", "SUPPORT_TICKETS": 3, "CLAYGENT_USED": 1, "INTEGRATION_DEPTH": 3, "RECOMMENDED_ACTION": "Upsell review"},
+        {"CUSTOMER_ID": 7, "COMPANY_NAME": "Northstar AI", "INDUSTRY": "Technology", "PLAN_TIER": "Enterprise", "ARR": 72000, "WORKFLOW_RUNS": 140, "DATA_CREDITS_USED": 25000, "PIPELINE_GENERATED": 6900000, "PIPELINE_PER_CREDIT": 276.00, "EXPANSION_SCORE": 83.0, "CHURN_RISK_SCORE": 28.0, "RISK_BAND": "LOW", "SUPPORT_TICKETS": 1, "CLAYGENT_USED": 1, "INTEGRATION_DEPTH": 5, "RECOMMENDED_ACTION": "Executive value review"},
+        {"CUSTOMER_ID": 8, "COMPANY_NAME": "MarketPulse 7", "INDUSTRY": "Fintech", "PLAN_TIER": "Explorer", "ARR": 8000, "WORKFLOW_RUNS": 11, "DATA_CREDITS_USED": 7600, "PIPELINE_GENERATED": 140000, "PIPELINE_PER_CREDIT": 18.42, "EXPANSION_SCORE": 38.1, "CHURN_RISK_SCORE": 86.4, "RISK_BAND": "HIGH", "SUPPORT_TICKETS": 10, "CLAYGENT_USED": 0, "INTEGRATION_DEPTH": 1, "RECOMMENDED_ACTION": "Retention intervention"},
+    ])
+
+    activation = pd.DataFrame([
+        {"CUSTOMER_ID": 1, "WORKFLOWS_FIRST_14D": 5, "PIPELINE_GENERATED": 8400000, "OPPORTUNITIES_CREATED": 38, "CLAYGENT_ADOPTED": 1},
+        {"CUSTOMER_ID": 2, "WORKFLOWS_FIRST_14D": 4, "PIPELINE_GENERATED": 3600000, "OPPORTUNITIES_CREATED": 21, "CLAYGENT_ADOPTED": 1},
+        {"CUSTOMER_ID": 3, "WORKFLOWS_FIRST_14D": 3, "PIPELINE_GENERATED": 2100000, "OPPORTUNITIES_CREATED": 16, "CLAYGENT_ADOPTED": 1},
+        {"CUSTOMER_ID": 4, "WORKFLOWS_FIRST_14D": 1, "PIPELINE_GENERATED": 310000, "OPPORTUNITIES_CREATED": 3, "CLAYGENT_ADOPTED": 0},
+        {"CUSTOMER_ID": 5, "WORKFLOWS_FIRST_14D": 1, "PIPELINE_GENERATED": 370000, "OPPORTUNITIES_CREATED": 4, "CLAYGENT_ADOPTED": 0},
+        {"CUSTOMER_ID": 6, "WORKFLOWS_FIRST_14D": 3, "PIPELINE_GENERATED": 850000, "OPPORTUNITIES_CREATED": 9, "CLAYGENT_ADOPTED": 1},
+        {"CUSTOMER_ID": 7, "WORKFLOWS_FIRST_14D": 6, "PIPELINE_GENERATED": 6900000, "OPPORTUNITIES_CREATED": 33, "CLAYGENT_ADOPTED": 1},
+        {"CUSTOMER_ID": 8, "WORKFLOWS_FIRST_14D": 0, "PIPELINE_GENERATED": 140000, "OPPORTUNITIES_CREATED": 2, "CLAYGENT_ADOPTED": 0},
+    ])
+
+    signal_feed = pd.DataFrame([
+        {"SEVERITY": "P0", "SIGNAL_TYPE": "Expansion", "SIGNAL_TITLE": "Expansion-ready accounts detected", "METRIC_VALUE": 3, "COMPARISON_VALUE": 116000, "HYPOTHESIS": "Several Pro accounts show enterprise-like usage and strong pipeline efficiency.", "RECOMMENDED_ACTION": "Route top candidates to AE/CS for Enterprise upsell review."},
+        {"SEVERITY": "P1", "SIGNAL_TYPE": "Retention", "SIGNAL_TITLE": "High-risk accounts require CS attention", "METRIC_VALUE": 2, "COMPARISON_VALUE": 19000, "HYPOTHESIS": "Some accounts show support friction and weaker outcome efficiency.", "RECOMMENDED_ACTION": "Run workflow audits and identify setup or targeting issues."},
+        {"SEVERITY": "P1", "SIGNAL_TYPE": "Activation", "SIGNAL_TITLE": "Early workflow depth is linked to pipeline", "METRIC_VALUE": 3, "COMPARISON_VALUE": 1, "HYPOTHESIS": "Customers building more workflows early tend to generate stronger pipeline.", "RECOMMENDED_ACTION": "Add onboarding nudges that push new users toward 3 completed workflows."},
+    ])
+    return base, activation, signal_feed
+
+
 @st.cache_data(ttl=600, show_spinner=False)
 def run_query(query: str) -> pd.DataFrame:
+    """Run Snowflake query or return local demo marts.
+
+    The original public app queried Snowflake/dbt marts. The Snowflake free trial environment
+    has ended, so local demo marts keep the portfolio app available without a live warehouse.
+    """
+    if USE_LOCAL_DEMO_DATA:
+        base, activation, signal_feed = load_demo_tables()
+        q = query.upper()
+        if "ACTIVATION_VELOCITY" in q:
+            return activation.copy()
+        if "SIGNAL_FEED" in q:
+            return signal_feed.copy()
+        return base.copy()
+
     conn = st.connection("snowflake")
     return conn.query(query, ttl=600)
 
@@ -463,11 +517,11 @@ global_signals = run_query(f"SELECT * FROM {MART_PREFIX}.SIGNAL_FEED")
 st.markdown("""
 <div class="topbar">
   <div class="brand"><div class="brand-mark">C</div><span class="brand-name">Clay</span><span class="brand-sub">Revenue Intelligence</span></div>
-  <div><span class="data-badge">Snowflake · dbt marts · synthetic data</span><span class="live-badge"><span class="live-dot"></span>Live</span></div>
+  <div><span class="data-badge">Local demo data · originally Snowflake/dbt</span><span class="live-badge"><span class="live-dot"></span>Live</span></div>
 </div>
 """, unsafe_allow_html=True)
 
-st.markdown('<div class="small-note">Dynamic analytics app using public Clay product concepts and synthetic data. All KPIs, diagnostics, risk scores, and recommendations recalculate from dbt-built Snowflake models and respond to filters.</div>', unsafe_allow_html=True)
+st.markdown('<div class="small-note">Dynamic analytics app using public Clay product concepts and synthetic data. This public demo currently runs on local sample data because the original Snowflake free trial environment has ended. The project was originally built with Snowflake and dbt, and the repository includes the pipeline architecture, dbt models, and Snowflake SQL assets.</div>', unsafe_allow_html=True)
 
 st.markdown('<div class="filter-card"><div class="card-title">Segment Filters</div><div class="card-sub">Use these filters to analyze GTM health by plan, industry, and risk band.</div></div>', unsafe_allow_html=True)
 
