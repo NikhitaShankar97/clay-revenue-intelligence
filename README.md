@@ -12,7 +12,7 @@ Public Streamlit app:
 
 https://clay-revenue-intelligence.streamlit.app/
 
-Note: The public Streamlit demo currently runs on local sample data because the original Snowflake free trial environment has ended. The project was originally built with Snowflake and dbt, and the repository includes the pipeline architecture, dbt models, and Snowflake SQL assets.
+#### Note: The public Streamlit demo currently runs on local sample data because the original Snowflake free trial environment has ended. The project was originally built with Snowflake and dbt, and the repository includes the pipeline architecture, dbt models, and Snowflake SQL assets.
 ---
 
 ## Demo Video
